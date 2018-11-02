@@ -11,6 +11,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import model.Jogador;
 import rede.AtorJogador;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -37,6 +38,335 @@ public class TelaJornada extends javax.swing.JFrame {
 
     private void inicializaJogador() {
         this.jogador = this.atorJogador.getJogador();
+        if (this.jogador.isPosicao1() == true) {
+            this.jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaUmNaPosicao.png")));
+        }
+        else if(this.jogador.isPosicao16() == true) {
+            this.jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaDezesseisNaPosicao.png")));
+        }
+    }
+    
+    public void calculaMovimento(int posicao, String caminho){
+        if (posicao == 1){
+            if (caminho == "Norte") {
+                JOptionPane.showMessageDialog(null, "Voce nao pode ir para o Norte, escolha um caminho válido.");
+            }            
+            else if (caminho == "Sul") {
+                this.jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaUm.png")));
+                this.jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaCincoNaPosicao.png")));
+                this.jogador.setPosicaoAtual(5);
+            }
+            else if (caminho == "Leste") {
+                this.jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaUm.png")));
+                this.jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaDoisNaPosicao.png")));
+                this.jogador.setPosicaoAtual(2);
+            }
+            else if (caminho == "Oeste") {
+                JOptionPane.showMessageDialog(null, "Voce nao pode ir para o Oeste, escolha um caminho válido.");
+            }
+        }
+        else if (posicao == 2) {
+            if (caminho == "Norte") {
+                JOptionPane.showMessageDialog(null, "Voce nao pode ir para o Norte, escolha um caminho válido.");
+            }            
+            else if (caminho == "Sul") {
+                this.jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaDois.png")));
+                this.jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaSeisNaPosicao.png")));
+                this.jogador.setPosicaoAtual(6);
+            }
+            else if (caminho == "Leste") {
+                this.jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaDois.png")));
+                this.jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaTresNaPosicao.png")));
+                this.jogador.setPosicaoAtual(3);
+            }
+            else if (caminho == "Oeste") {
+                this.jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaDois.png")));
+                this.jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaUmNaPosicao.png")));
+                this.jogador.setPosicaoAtual(1);
+            }
+        }
+        else if (posicao == 3) {
+            if (caminho == "Norte") {
+                JOptionPane.showMessageDialog(null, "Voce nao pode ir para o Norte, escolha um caminho válido.");
+            }            
+            else if (caminho == "Sul") {
+                this.jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaTres.png")));
+                this.jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaSeteNaPosicao.png")));
+                this.jogador.setPosicaoAtual(7);
+            }
+            else if (caminho == "Leste") {
+                this.jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaTres.png")));
+                this.jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaQuatroNaPosicao.png")));
+                this.jogador.setPosicaoAtual(4);
+            }
+            else if (caminho == "Oeste") {
+                this.jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaTres.png")));
+                this.jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaDoisNaPosicao.png")));
+                this.jogador.setPosicaoAtual(2);
+            }
+        }
+        else if (posicao == 4) {
+            if (caminho == "Norte") {
+                JOptionPane.showMessageDialog(null, "Voce nao pode ir para o Norte, escolha um caminho válido.");
+            }            
+            else if (caminho == "Sul") {
+                this.jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaQuatro.png")));
+                this.jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaOitoNaPosicao.png")));
+                this.jogador.setPosicaoAtual(8);
+            }
+            else if (caminho == "Leste") {
+                JOptionPane.showMessageDialog(null, "Voce nao pode ir para o Norte, escolha um caminho válido.");
+            }
+            else if (caminho == "Oeste") {
+                this.jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaQuatro.png")));
+                this.jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaTres.png")));
+                this.jogador.setPosicaoAtual(3);
+            }
+        }
+        else if (posicao == 5) {
+            if (caminho == "Norte") {
+                this.jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaCinco.png")));
+                this.jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaUmNaPosicao.png")));
+                this.jogador.setPosicaoAtual(1);
+            }            
+            else if (caminho == "Sul") {
+                this.jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaCinco.png")));
+                this.jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaNoveNaPosicao.png")));
+                this.jogador.setPosicaoAtual(9);
+            }
+            else if (caminho == "Leste") {
+                this.jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaCinco.png")));
+                this.jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaSeisNaPosicao.png")));
+                this.jogador.setPosicaoAtual(6);
+            }
+            else if (caminho == "Oeste") {
+                JOptionPane.showMessageDialog(null, "Voce nao pode ir para o Oeste, escolha um caminho válido.");
+            }
+        }
+        else if (posicao == 6) {
+            if (caminho == "Norte") {
+                this.jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaSeis.png")));
+                this.jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaDoisNaPosicao.png")));
+                this.jogador.setPosicaoAtual(2);
+            }            
+            else if (caminho == "Sul") {
+                this.jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaSeis.png")));
+                this.jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaDezNaPosicao.png")));
+                this.jogador.setPosicaoAtual(10);
+            }
+            else if (caminho == "Leste") {
+                this.jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaSeis.png")));
+                this.jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaSeteNaPosicao.png")));
+                this.jogador.setPosicaoAtual(7);
+            }
+            else if (caminho == "Oeste") {
+                this.jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaSeis.png")));
+                this.jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaCincoNaPosicao.png")));
+                this.jogador.setPosicaoAtual(5);
+            }
+        }
+        else if (posicao == 7) {
+            if (caminho == "Norte") {
+                this.jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaSete.png")));
+                this.jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaTresNaPosicao.png")));
+                this.jogador.setPosicaoAtual(3);
+            }            
+            else if (caminho == "Sul") {
+                this.jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaSete.png")));
+                this.jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaOnzeNaPosicao.png")));
+                this.jogador.setPosicaoAtual(11);
+            }
+            else if (caminho == "Leste") {
+                this.jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaSete.png")));
+                this.jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaOitoNaPosicao.png")));
+                this.jogador.setPosicaoAtual(8);
+            }
+            else if (caminho == "Oeste") {
+                this.jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaSete.png")));
+                this.jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaSeisNaPosicao.png")));
+                this.jogador.setPosicaoAtual(6);
+            }
+        }
+        else if (posicao == 8) {
+            if (caminho == "Norte") {
+                this.jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaOito.png")));
+                this.jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaQuatroNaPosicao.png")));
+                this.jogador.setPosicaoAtual(4);
+            }            
+            else if (caminho == "Sul") {
+                this.jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaOito.png")));
+                this.jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaDozeNaPosicao.png")));
+                this.jogador.setPosicaoAtual(12);
+            }
+            else if (caminho == "Leste") {
+                JOptionPane.showMessageDialog(null, "Voce nao pode ir para o Oeste, escolha um caminho válido.");
+            }
+            else if (caminho == "Oeste") {
+                this.jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaOito.png")));
+                this.jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaSeteNaPosicao.png")));
+                this.jogador.setPosicaoAtual(7);
+            }
+        }
+        else if (posicao == 9) {
+            if (caminho == "Norte") {
+                this.jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaNove.png")));
+                this.jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaCincoNaPosicao.png")));
+                this.jogador.setPosicaoAtual(5);
+            }            
+            else if (caminho == "Sul") {
+                this.jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaNove.png")));
+                this.jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaTrezeNaPosicao.png")));
+                this.jogador.setPosicaoAtual(13);
+            }
+            else if (caminho == "Leste") {
+                this.jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaNove.png")));
+                this.jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaDezNaPosicao.png")));
+                this.jogador.setPosicaoAtual(10);
+            }
+            else if (caminho == "Oeste") {
+                JOptionPane.showMessageDialog(null, "Voce nao pode ir para o Oeste, escolha um caminho válido.");
+            }
+        }
+        else if (posicao == 10) {
+            if (caminho == "Norte") {
+                this.jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaDez.png")));
+                this.jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaSeisNaPosicao.png")));
+                this.jogador.setPosicaoAtual(6);
+            }            
+            else if (caminho == "Sul") {
+                this.jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaDez.png")));
+                this.jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaCatorzeNaPosicao.png")));
+                this.jogador.setPosicaoAtual(14);
+            }
+            else if (caminho == "Leste") {
+                this.jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaDez.png")));
+                this.jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaOnzeNaPosicao.png")));
+                this.jogador.setPosicaoAtual(11);
+            }
+            else if (caminho == "Oeste") {
+                this.jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaDez.png")));
+                this.jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaNoveNaPosicao.png")));
+                this.jogador.setPosicaoAtual(9);
+            }
+        }
+        else if (posicao == 11) {
+            if (caminho == "Norte") {
+                this.jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaOnze.png")));
+                this.jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaSeteNaPosicao.png")));
+                this.jogador.setPosicaoAtual(7);
+            }            
+            else if (caminho == "Sul") {
+                this.jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaOnze.png")));
+                this.jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaQuinzeNaPosicao.png")));
+                this.jogador.setPosicaoAtual(15);
+            }
+            else if (caminho == "Leste") {
+                this.jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaOnze.png")));
+                this.jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaDozeNaPosicao.png")));
+                this.jogador.setPosicaoAtual(12);
+            }
+            else if (caminho == "Oeste") {
+                this.jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaOnze.png")));
+                this.jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaDezNaPosicao.png")));
+                this.jogador.setPosicaoAtual(10);
+            }
+        }
+        else if (posicao == 12) {
+            if (caminho == "Norte") {
+                this.jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaDoze.png")));
+                this.jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaOitoNaPosicao.png")));
+                this.jogador.setPosicaoAtual(8);
+            }            
+            else if (caminho == "Sul") {
+                this.jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaDoze.png")));
+                this.jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaDezesseisNaPosicao.png")));
+                this.jogador.setPosicaoAtual(16);
+            }
+            else if (caminho == "Leste") {
+                JOptionPane.showMessageDialog(null, "Voce nao pode ir para o Oeste, escolha um caminho válido.");
+            }
+            else if (caminho == "Oeste") {
+                this.jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaDoze.png")));
+                this.jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaOnzeNaPosicao.png")));
+                this.jogador.setPosicaoAtual(11);
+            }
+        }
+        else if (posicao == 13) {
+            if (caminho == "Norte") {
+                this.jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaTreze.png")));
+                this.jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaNoveNaPosicao.png")));
+                this.jogador.setPosicaoAtual(9);
+            }            
+            else if (caminho == "Sul") {
+                JOptionPane.showMessageDialog(null, "Voce nao pode ir para o Norte, escolha um caminho válido.");
+            }
+            else if (caminho == "Leste") {
+                this.jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaTreze.png")));
+                this.jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaCatorzeNaPosicao.png")));
+                this.jogador.setPosicaoAtual(14);
+            }
+            else if (caminho == "Oeste") {
+                JOptionPane.showMessageDialog(null, "Voce nao pode ir para o Oeste, escolha um caminho válido.");
+            }
+        }
+        else if (posicao == 14) {
+            if (caminho == "Norte") {
+                this.jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaCatorze.png")));
+                this.jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaDezNaPosicao.png")));
+                this.jogador.setPosicaoAtual(10);
+            }            
+            else if (caminho == "Sul") {
+                JOptionPane.showMessageDialog(null, "Voce nao pode ir para o Oeste, escolha um caminho válido.");
+            }
+            else if (caminho == "Leste") {
+                this.jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaCatorze.png")));
+                this.jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaQuinzeNaPosicao.png")));
+                this.jogador.setPosicaoAtual(15);
+            }
+            else if (caminho == "Oeste") {
+                this.jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaCatorze.png")));
+                this.jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaTrezeNaPosicao.png")));
+                this.jogador.setPosicaoAtual(13);
+            }
+        }
+        else if (posicao == 15) {
+            if (caminho == "Norte") {
+                this.jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaQuinze.png")));
+                this.jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaOnzeNaPosicao.png")));
+                this.jogador.setPosicaoAtual(11);
+            }            
+            else if (caminho == "Sul") {
+                JOptionPane.showMessageDialog(null, "Voce nao pode ir para o Norte, escolha um caminho válido.");
+            }
+            else if (caminho == "Leste") {
+                this.jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaQuinze.png")));
+                this.jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaDezesseisNaPosicao.png")));
+                this.jogador.setPosicaoAtual(16);
+            }
+            else if (caminho == "Oeste") {
+                this.jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaQuinze.png")));
+                this.jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaCatorzeNaPosicao.png")));
+                this.jogador.setPosicaoAtual(14);
+            }
+        }
+        else if (posicao == 16) {
+            if (caminho == "Norte") {
+                this.jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaDezesseis.png")));
+                this.jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaDozeNaPosicao.png")));
+                this.jogador.setPosicaoAtual(12);
+            }            
+            else if (caminho == "Sul") {
+                JOptionPane.showMessageDialog(null, "Voce nao pode ir para o Norte, escolha um caminho válido.");
+            }
+            else if (caminho == "Leste") {
+                JOptionPane.showMessageDialog(null, "Voce nao pode ir para o Norte, escolha um caminho válido.");
+            }
+            else if (caminho == "Oeste") {
+                this.jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaDezesseis.png")));
+                this.jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaQuinzeNaPosicao.png")));
+                this.jogador.setPosicaoAtual(15);
+            }
+        }
     }
 
     public void setRandomItem(int numeroRandom, int cliques) {
@@ -90,7 +420,7 @@ public class TelaJornada extends javax.swing.JFrame {
         jButtonIr = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jListItens = new javax.swing.JList<>();
-        jButtonBatalhar = new javax.swing.JButton();
+        jButtonTerminarJogada = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -128,10 +458,10 @@ public class TelaJornada extends javax.swing.JFrame {
         jListItens.setModel(new DefaultListModel());
         jScrollPane1.setViewportView(jListItens);
 
-        jButtonBatalhar.setText("Batalhar");
-        jButtonBatalhar.addActionListener(new java.awt.event.ActionListener() {
+        jButtonTerminarJogada.setText("Terminar Jogada");
+        jButtonTerminarJogada.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonBatalharActionPerformed(evt);
+                jButtonTerminarJogadaActionPerformed(evt);
             }
         });
 
@@ -140,45 +470,43 @@ public class TelaJornada extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabelEscolhaUmCaminho)
-                        .addGap(141, 141, 141))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(jComboBoxCaminho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonIr))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jComboBoxCaminho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jButtonIr))
+                                .addGap(62, 62, 62)
+                                .addComponent(Mochila))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(49, 49, 49)
-                                .addComponent(Mochila)))
-                        .addGap(40, 40, 40))))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addComponent(jButtonBatalhar)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(21, 21, 21)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                                    .addComponent(jButtonTerminarJogada, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(30, 30, 30)
+                                .addComponent(jLabelEscolhaUmCaminho)))
+                        .addGap(0, 3, Short.MAX_VALUE)))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(18, 18, 18)
                 .addComponent(jLabelEscolhaUmCaminho)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBoxCaminho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonIr))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                    .addComponent(jButtonIr)
+                    .addComponent(jComboBoxCaminho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addComponent(Mochila)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButtonBatalhar)
+                .addComponent(jButtonTerminarJogada)
                 .addGap(18, 18, 18))
         );
 
@@ -293,18 +621,17 @@ public class TelaJornada extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(23, 23, 23))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(32, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -313,6 +640,9 @@ public class TelaJornada extends javax.swing.JFrame {
 
     private void jButtonIrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIrActionPerformed
         // TODO add your handling code here:
+        this.jComboBoxCaminho.setEnabled(false);
+        this.jButtonIr.setEnabled(false);
+        calculaMovimento(this.jogador.getPosicaoAtual(), jComboBoxCaminho.getSelectedItem().toString());
         cliques++;
         if (cliques > 3) {
             JOptionPane.showMessageDialog(null, "Você atingiu o número máximo de itens.");
@@ -338,19 +668,16 @@ public class TelaJornada extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButtonIrActionPerformed
 
-    private void jButtonBatalharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBatalharActionPerformed
+    private void jButtonTerminarJogadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTerminarJogadaActionPerformed
         // TODO add your handling code here:
-        this.atorJogador.enviarEstado();
-        this.dispose();
-        TelaBatalha telaBatalha = new TelaBatalha(this.atorJogador);
-//        this.atorJogador.enviarEstado();
-    }//GEN-LAST:event_jButtonBatalharActionPerformed
+        this.atorJogador.enviarPosicao(this.jogador.getPosicaoAtual(), true);
+    }//GEN-LAST:event_jButtonTerminarJogadaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Mochila;
-    private javax.swing.JButton jButtonBatalhar;
     private javax.swing.JButton jButtonIr;
+    private javax.swing.JButton jButtonTerminarJogada;
     private javax.swing.JComboBox<String> jComboBoxCaminho;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;

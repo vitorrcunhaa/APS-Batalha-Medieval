@@ -100,13 +100,27 @@ public class AtorNetGames implements OuvidorProxy{
         }
     }
     
+    public void enviarPosicao(EstadoMapa estado) {
+        try{
+            proxy.enviaJogada(estado);
+            minhaVez = false;
+        }catch (NaoJogandoException e){
+            atorJogador.getTelaPrincipal().showDialog(e.getMessage());
+        }
+    }
+    
     @Override
     public void receberJogada(Jogada jogada) {
+        if (jogada instanceof EstadoMapa)
+        {
+            EstadoMapa estadoMapa = (EstadoMapa) jogada;
+            atorJogador.receberPosicao(estadoMapa);
+        } else {
         EstadoDoJogo estado = (EstadoDoJogo) jogada;
         JOptionPane.showMessageDialog(null, "recebendo jogada");
         atorJogador.receberEstado(estado);
         minhaVez = true;
-
+        }
     }
     
     public boolean ehMinhaVez(){

@@ -32,7 +32,8 @@ public class Jogador implements Jogada{
     protected boolean posicao14;
     protected boolean posicao15;
     protected boolean posicao16;
-
+    protected int posicaoAtual;
+    
     public Jogador(String nome, boolean jogadorLocal){
         // implementar algo como this.personagem = new Personagem();
         this.posicao1 = false;
@@ -54,6 +55,86 @@ public class Jogador implements Jogada{
     	this.nome = nome;
         this.jogadorLocal = jogadorLocal;
     }
+   
+    public int getPosicaoAtual() {
+        return posicaoAtual;
+    }
+
+    public void setPosicaoAtual(int posicaoAtual) {
+        this.posicaoAtual = posicaoAtual;
+    }
+    
+    public String getNome() {
+        return nome;
+    }
+
+    public int getIdJogador() {
+        return idJogador;
+    }
+
+    public boolean isPosicao1() {
+        return posicao1;
+    }
+
+    public boolean isPosicao2() {
+        return posicao2;
+    }
+
+    public boolean isPosicao3() {
+        return posicao3;
+    }
+
+    public boolean isPosicao4() {
+        return posicao4;
+    }
+
+    public boolean isPosicao5() {
+        return posicao5;
+    }
+
+    public boolean isPosicao6() {
+        return posicao6;
+    }
+
+    public boolean isPosicao7() {
+        return posicao7;
+    }
+
+    public boolean isPosicao8() {
+        return posicao8;
+    }
+
+    public boolean isPosicao9() {
+        return posicao9;
+    }
+
+    public boolean isPosicao10() {
+        return posicao10;
+    }
+
+    public boolean isPosicao11() {
+        return posicao11;
+    }
+
+    public boolean isPosicao12() {
+        return posicao12;
+    }
+
+    public boolean isPosicao13() {
+        return posicao13;
+    }
+
+    public boolean isPosicao14() {
+        return posicao14;
+    }
+
+    public boolean isPosicao15() {
+        return posicao15;
+    }
+
+    public boolean isPosicao16() {
+        return posicao16;
+    }
     
     public Personagem getPersonagem(){
         return this.personagem;
@@ -71,5 +152,9 @@ public class Jogador implements Jogada{
         return false;
     }
     
+    public void setPosicaoInicial(boolean posicao)
+    {
+        this.posicaoAtual = 1;
+    }
     
 }

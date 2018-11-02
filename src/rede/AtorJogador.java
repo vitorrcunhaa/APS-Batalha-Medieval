@@ -104,19 +104,15 @@ public class AtorJogador {
       
         if (comecoJogando) {
             this.telaPrincipal.showDialog("Jogadores conectados. Você começa jogando.");
+            Jogador jogador = this.controlador.getJogador1();
+            jogador.setPosicaoInicial(comecoJogando);
             this.exibeTelaJornada();
-            this.enviarEstado();
         } else {
-            //mostrar a tela para os dois jogadores
-            if(this.atorNetGames.ehMinhaVez() == true) {
-                this.telaPrincipal.showDialog("Jogadores conectados. Aguarde a jogada do seu adversário.");
-                this.enviarEstado();
-                this.receberEstado(controlador.getEstado());
-                // implementar(se necessario)this.telaPrincipal.atualizarNomeJogador1(nomeOutroJogador, false);
-                // implementar(se necessario)this.telaPrincipal.atualizarNomeJogador2(this.nome, true);
-                // desabiliar botoes
+            this.telaPrincipal.showDialog("Jogadores conectados. Aguarde a jogada do seu adversário.");
+            // implementar(se necessario)this.telaPrincipal.atualizarNomeJogador1(nomeOutroJogador, false);
+            // implementar(se necessario)this.telaPrincipal.atualizarNomeJogador2(this.nome, true);
+            // desabiliar botoes
 
-            }
         }
         // o atualizarInterface estado deve atualizar pelo menos o numero de etapas
         // na tela de batalha ou na tela de jornada
@@ -166,6 +162,12 @@ public class AtorJogador {
         //desabilitar botoes
         atorNetGames.enviarEstado(controlador.getEstado());
     }
+    
+    public void enviarPosicao(int posicao, boolean minhaVez)
+    {
+        this.controlador.setEstadoMapa(minhaVez, posicao);
+        atorNetGames.enviarPosicao(controlador.getEstadoMapa());
+    }
 
     public void receberEstado(EstadoDoJogo estado) {
         JOptionPane.showMessageDialog(null, "vc recebeu um estado");
@@ -176,5 +178,11 @@ public class AtorJogador {
         } else {
             //habilitar botoes
         }
+    }
+    
+    public void receberPosicao(EstadoMapa estadoMapa) {
+        JOptionPane.showMessageDialog(null, "vc recebeu uma posicao");
+        this.atorNetGames.minhaVez = true;
+        this.controlador.setEstadoMapa(estadoMapa.isMinhaVez(), estadoMapa.getMinhaPosicao());
     }
 }

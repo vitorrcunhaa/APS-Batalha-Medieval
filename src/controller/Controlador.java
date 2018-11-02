@@ -8,6 +8,7 @@ package controller;
 import model.Jogador;
 import rede.AtorJogador;
 import rede.EstadoDoJogo;
+import rede.EstadoMapa;
 
 public class Controlador {
     
@@ -17,6 +18,7 @@ public class Controlador {
     protected boolean jogadorDaVezVenceu;
     protected boolean jogadorDaVezDesistiu;
     protected EstadoDoJogo estadoJogo;
+    protected EstadoMapa estadoMapa;
     protected boolean partidaEmAndamento;
 
     public Controlador(AtorJogador atorJogador) {
@@ -84,6 +86,15 @@ public class Controlador {
         return this.estadoJogo;
     }
     
+     public EstadoMapa getEstadoMapa(){
+        return this.estadoMapa;
+    }
+     
+    public void setEstadoMapa(boolean minhaVez, int posicao)
+    {
+        this.estadoMapa = new EstadoMapa(minhaVez, posicao);
+    }
+    
     public boolean setEstado(EstadoDoJogo estado){
     	this.estadoJogo = estado;
     	if(estado.isVencedor()){
@@ -97,7 +108,5 @@ public class Controlador {
     	}
     	
     	return true;
-    }
-
-    
+    }    
 }
