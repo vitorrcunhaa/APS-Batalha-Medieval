@@ -105,10 +105,13 @@ public class AtorJogador {
         if (comecoJogando) {
             this.telaPrincipal.showDialog("Jogadores conectados. Você começa jogando.");
             Jogador jogador = this.controlador.getJogador1();
-            jogador.setPosicaoInicial(comecoJogando);
+            jogador.setPosicaoAtual(1);
             this.exibeTelaJornada();
         } else {
             this.telaPrincipal.showDialog("Jogadores conectados. Aguarde a jogada do seu adversário.");
+            Jogador jogador = this.controlador.getJogador2();
+            jogador.setPosicaoAtual(16);
+            this.exibeTelaJornada();
             // implementar(se necessario)this.telaPrincipal.atualizarNomeJogador1(nomeOutroJogador, false);
             // implementar(se necessario)this.telaPrincipal.atualizarNomeJogador2(this.nome, true);
             // desabiliar botoes
@@ -181,8 +184,19 @@ public class AtorJogador {
     }
     
     public void receberPosicao(EstadoMapa estadoMapa) {
-        JOptionPane.showMessageDialog(null, "vc recebeu uma posicao");
+        JOptionPane.showMessageDialog(null, "Sua vez!");
         this.atorNetGames.minhaVez = true;
+        if(this.controlador.getJogador1() != null){
+            if(estadoMapa.getMinhaPosicao() == this.controlador.getJogador1().getPosicaoAtual()) {
+            JOptionPane.showMessageDialog(null, "Você encontrou um oponente. Hora da batalha!");
+            }
+        }
+        else {
+            if(estadoMapa.getMinhaPosicao() == this.controlador.getJogador2().getPosicaoAtual()) {
+            JOptionPane.showMessageDialog(null, "Você encontrou um oponente. Hora da batalha!");
+            }
+        }
         this.controlador.setEstadoMapa(estadoMapa.isMinhaVez(), estadoMapa.getMinhaPosicao());
+        this.telaJornada.habilitarBotoes();
     }
 }

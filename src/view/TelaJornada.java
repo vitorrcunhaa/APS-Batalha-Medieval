@@ -35,342 +35,308 @@ public class TelaJornada extends javax.swing.JFrame {
         setVisible(true);
         inicializaJogador();
     }
+    
+    public void habilitarBotoes() {
+        this.jButtonTerminarJogada.setEnabled(true);
+        this.jComboBoxCaminho.setEnabled(true);
+        this.jButtonIr.setEnabled(true);
+    }
+    
+    public void desabilitarBotoes() {
+        this.jButtonTerminarJogada.setEnabled(false);
+        this.jComboBoxCaminho.setEnabled(false);
+        this.jButtonIr.setEnabled(false);
+    }
 
     private void inicializaJogador() {
         this.jogador = this.atorJogador.getJogador();
-        if (this.jogador.isPosicao1() == true) {
+        if (this.jogador.getPosicaoAtual() == 1) {
             this.jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaUmNaPosicao.png")));
-        }
-        else if(this.jogador.isPosicao16() == true) {
+        } else if (this.jogador.getPosicaoAtual() == 16) {
             this.jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaDezesseisNaPosicao.png")));
-        }
-    }
-    
-    public void calculaMovimento(int posicao, String caminho){
-        if (posicao == 1){
-            if (caminho == "Norte") {
-                JOptionPane.showMessageDialog(null, "Voce nao pode ir para o Norte, escolha um caminho válido.");
-            }            
-            else if (caminho == "Sul") {
-                this.jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaUm.png")));
-                this.jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaCincoNaPosicao.png")));
-                this.jogador.setPosicaoAtual(5);
-            }
-            else if (caminho == "Leste") {
-                this.jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaUm.png")));
-                this.jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaDoisNaPosicao.png")));
-                this.jogador.setPosicaoAtual(2);
-            }
-            else if (caminho == "Oeste") {
-                JOptionPane.showMessageDialog(null, "Voce nao pode ir para o Oeste, escolha um caminho válido.");
-            }
-        }
-        else if (posicao == 2) {
-            if (caminho == "Norte") {
-                JOptionPane.showMessageDialog(null, "Voce nao pode ir para o Norte, escolha um caminho válido.");
-            }            
-            else if (caminho == "Sul") {
-                this.jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaDois.png")));
-                this.jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaSeisNaPosicao.png")));
-                this.jogador.setPosicaoAtual(6);
-            }
-            else if (caminho == "Leste") {
-                this.jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaDois.png")));
-                this.jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaTresNaPosicao.png")));
-                this.jogador.setPosicaoAtual(3);
-            }
-            else if (caminho == "Oeste") {
-                this.jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaDois.png")));
-                this.jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaUmNaPosicao.png")));
-                this.jogador.setPosicaoAtual(1);
-            }
-        }
-        else if (posicao == 3) {
-            if (caminho == "Norte") {
-                JOptionPane.showMessageDialog(null, "Voce nao pode ir para o Norte, escolha um caminho válido.");
-            }            
-            else if (caminho == "Sul") {
-                this.jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaTres.png")));
-                this.jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaSeteNaPosicao.png")));
-                this.jogador.setPosicaoAtual(7);
-            }
-            else if (caminho == "Leste") {
-                this.jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaTres.png")));
-                this.jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaQuatroNaPosicao.png")));
-                this.jogador.setPosicaoAtual(4);
-            }
-            else if (caminho == "Oeste") {
-                this.jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaTres.png")));
-                this.jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaDoisNaPosicao.png")));
-                this.jogador.setPosicaoAtual(2);
-            }
-        }
-        else if (posicao == 4) {
-            if (caminho == "Norte") {
-                JOptionPane.showMessageDialog(null, "Voce nao pode ir para o Norte, escolha um caminho válido.");
-            }            
-            else if (caminho == "Sul") {
-                this.jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaQuatro.png")));
-                this.jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaOitoNaPosicao.png")));
-                this.jogador.setPosicaoAtual(8);
-            }
-            else if (caminho == "Leste") {
-                JOptionPane.showMessageDialog(null, "Voce nao pode ir para o Norte, escolha um caminho válido.");
-            }
-            else if (caminho == "Oeste") {
-                this.jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaQuatro.png")));
-                this.jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaTres.png")));
-                this.jogador.setPosicaoAtual(3);
-            }
-        }
-        else if (posicao == 5) {
-            if (caminho == "Norte") {
-                this.jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaCinco.png")));
-                this.jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaUmNaPosicao.png")));
-                this.jogador.setPosicaoAtual(1);
-            }            
-            else if (caminho == "Sul") {
-                this.jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaCinco.png")));
-                this.jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaNoveNaPosicao.png")));
-                this.jogador.setPosicaoAtual(9);
-            }
-            else if (caminho == "Leste") {
-                this.jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaCinco.png")));
-                this.jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaSeisNaPosicao.png")));
-                this.jogador.setPosicaoAtual(6);
-            }
-            else if (caminho == "Oeste") {
-                JOptionPane.showMessageDialog(null, "Voce nao pode ir para o Oeste, escolha um caminho válido.");
-            }
-        }
-        else if (posicao == 6) {
-            if (caminho == "Norte") {
-                this.jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaSeis.png")));
-                this.jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaDoisNaPosicao.png")));
-                this.jogador.setPosicaoAtual(2);
-            }            
-            else if (caminho == "Sul") {
-                this.jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaSeis.png")));
-                this.jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaDezNaPosicao.png")));
-                this.jogador.setPosicaoAtual(10);
-            }
-            else if (caminho == "Leste") {
-                this.jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaSeis.png")));
-                this.jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaSeteNaPosicao.png")));
-                this.jogador.setPosicaoAtual(7);
-            }
-            else if (caminho == "Oeste") {
-                this.jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaSeis.png")));
-                this.jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaCincoNaPosicao.png")));
-                this.jogador.setPosicaoAtual(5);
-            }
-        }
-        else if (posicao == 7) {
-            if (caminho == "Norte") {
-                this.jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaSete.png")));
-                this.jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaTresNaPosicao.png")));
-                this.jogador.setPosicaoAtual(3);
-            }            
-            else if (caminho == "Sul") {
-                this.jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaSete.png")));
-                this.jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaOnzeNaPosicao.png")));
-                this.jogador.setPosicaoAtual(11);
-            }
-            else if (caminho == "Leste") {
-                this.jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaSete.png")));
-                this.jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaOitoNaPosicao.png")));
-                this.jogador.setPosicaoAtual(8);
-            }
-            else if (caminho == "Oeste") {
-                this.jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaSete.png")));
-                this.jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaSeisNaPosicao.png")));
-                this.jogador.setPosicaoAtual(6);
-            }
-        }
-        else if (posicao == 8) {
-            if (caminho == "Norte") {
-                this.jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaOito.png")));
-                this.jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaQuatroNaPosicao.png")));
-                this.jogador.setPosicaoAtual(4);
-            }            
-            else if (caminho == "Sul") {
-                this.jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaOito.png")));
-                this.jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaDozeNaPosicao.png")));
-                this.jogador.setPosicaoAtual(12);
-            }
-            else if (caminho == "Leste") {
-                JOptionPane.showMessageDialog(null, "Voce nao pode ir para o Oeste, escolha um caminho válido.");
-            }
-            else if (caminho == "Oeste") {
-                this.jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaOito.png")));
-                this.jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaSeteNaPosicao.png")));
-                this.jogador.setPosicaoAtual(7);
-            }
-        }
-        else if (posicao == 9) {
-            if (caminho == "Norte") {
-                this.jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaNove.png")));
-                this.jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaCincoNaPosicao.png")));
-                this.jogador.setPosicaoAtual(5);
-            }            
-            else if (caminho == "Sul") {
-                this.jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaNove.png")));
-                this.jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaTrezeNaPosicao.png")));
-                this.jogador.setPosicaoAtual(13);
-            }
-            else if (caminho == "Leste") {
-                this.jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaNove.png")));
-                this.jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaDezNaPosicao.png")));
-                this.jogador.setPosicaoAtual(10);
-            }
-            else if (caminho == "Oeste") {
-                JOptionPane.showMessageDialog(null, "Voce nao pode ir para o Oeste, escolha um caminho válido.");
-            }
-        }
-        else if (posicao == 10) {
-            if (caminho == "Norte") {
-                this.jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaDez.png")));
-                this.jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaSeisNaPosicao.png")));
-                this.jogador.setPosicaoAtual(6);
-            }            
-            else if (caminho == "Sul") {
-                this.jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaDez.png")));
-                this.jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaCatorzeNaPosicao.png")));
-                this.jogador.setPosicaoAtual(14);
-            }
-            else if (caminho == "Leste") {
-                this.jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaDez.png")));
-                this.jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaOnzeNaPosicao.png")));
-                this.jogador.setPosicaoAtual(11);
-            }
-            else if (caminho == "Oeste") {
-                this.jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaDez.png")));
-                this.jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaNoveNaPosicao.png")));
-                this.jogador.setPosicaoAtual(9);
-            }
-        }
-        else if (posicao == 11) {
-            if (caminho == "Norte") {
-                this.jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaOnze.png")));
-                this.jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaSeteNaPosicao.png")));
-                this.jogador.setPosicaoAtual(7);
-            }            
-            else if (caminho == "Sul") {
-                this.jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaOnze.png")));
-                this.jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaQuinzeNaPosicao.png")));
-                this.jogador.setPosicaoAtual(15);
-            }
-            else if (caminho == "Leste") {
-                this.jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaOnze.png")));
-                this.jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaDozeNaPosicao.png")));
-                this.jogador.setPosicaoAtual(12);
-            }
-            else if (caminho == "Oeste") {
-                this.jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaOnze.png")));
-                this.jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaDezNaPosicao.png")));
-                this.jogador.setPosicaoAtual(10);
-            }
-        }
-        else if (posicao == 12) {
-            if (caminho == "Norte") {
-                this.jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaDoze.png")));
-                this.jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaOitoNaPosicao.png")));
-                this.jogador.setPosicaoAtual(8);
-            }            
-            else if (caminho == "Sul") {
-                this.jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaDoze.png")));
-                this.jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaDezesseisNaPosicao.png")));
-                this.jogador.setPosicaoAtual(16);
-            }
-            else if (caminho == "Leste") {
-                JOptionPane.showMessageDialog(null, "Voce nao pode ir para o Oeste, escolha um caminho válido.");
-            }
-            else if (caminho == "Oeste") {
-                this.jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaDoze.png")));
-                this.jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaOnzeNaPosicao.png")));
-                this.jogador.setPosicaoAtual(11);
-            }
-        }
-        else if (posicao == 13) {
-            if (caminho == "Norte") {
-                this.jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaTreze.png")));
-                this.jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaNoveNaPosicao.png")));
-                this.jogador.setPosicaoAtual(9);
-            }            
-            else if (caminho == "Sul") {
-                JOptionPane.showMessageDialog(null, "Voce nao pode ir para o Norte, escolha um caminho válido.");
-            }
-            else if (caminho == "Leste") {
-                this.jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaTreze.png")));
-                this.jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaCatorzeNaPosicao.png")));
-                this.jogador.setPosicaoAtual(14);
-            }
-            else if (caminho == "Oeste") {
-                JOptionPane.showMessageDialog(null, "Voce nao pode ir para o Oeste, escolha um caminho válido.");
-            }
-        }
-        else if (posicao == 14) {
-            if (caminho == "Norte") {
-                this.jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaCatorze.png")));
-                this.jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaDezNaPosicao.png")));
-                this.jogador.setPosicaoAtual(10);
-            }            
-            else if (caminho == "Sul") {
-                JOptionPane.showMessageDialog(null, "Voce nao pode ir para o Oeste, escolha um caminho válido.");
-            }
-            else if (caminho == "Leste") {
-                this.jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaCatorze.png")));
-                this.jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaQuinzeNaPosicao.png")));
-                this.jogador.setPosicaoAtual(15);
-            }
-            else if (caminho == "Oeste") {
-                this.jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaCatorze.png")));
-                this.jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaTrezeNaPosicao.png")));
-                this.jogador.setPosicaoAtual(13);
-            }
-        }
-        else if (posicao == 15) {
-            if (caminho == "Norte") {
-                this.jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaQuinze.png")));
-                this.jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaOnzeNaPosicao.png")));
-                this.jogador.setPosicaoAtual(11);
-            }            
-            else if (caminho == "Sul") {
-                JOptionPane.showMessageDialog(null, "Voce nao pode ir para o Norte, escolha um caminho válido.");
-            }
-            else if (caminho == "Leste") {
-                this.jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaQuinze.png")));
-                this.jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaDezesseisNaPosicao.png")));
-                this.jogador.setPosicaoAtual(16);
-            }
-            else if (caminho == "Oeste") {
-                this.jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaQuinze.png")));
-                this.jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaCatorzeNaPosicao.png")));
-                this.jogador.setPosicaoAtual(14);
-            }
-        }
-        else if (posicao == 16) {
-            if (caminho == "Norte") {
-                this.jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaDezesseis.png")));
-                this.jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaDozeNaPosicao.png")));
-                this.jogador.setPosicaoAtual(12);
-            }            
-            else if (caminho == "Sul") {
-                JOptionPane.showMessageDialog(null, "Voce nao pode ir para o Norte, escolha um caminho válido.");
-            }
-            else if (caminho == "Leste") {
-                JOptionPane.showMessageDialog(null, "Voce nao pode ir para o Norte, escolha um caminho válido.");
-            }
-            else if (caminho == "Oeste") {
-                this.jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaDezesseis.png")));
-                this.jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaQuinzeNaPosicao.png")));
-                this.jogador.setPosicaoAtual(15);
-            }
+            desabilitarBotoes();
         }
     }
 
-    public void setRandomItem(int numeroRandom, int cliques) {
-        if(cliques==1){
+    public boolean calculaMovimento(int posicao, String caminho) {
+        if (posicao == 1) {
+            if (caminho == "Norte") {
+                JOptionPane.showMessageDialog(null, "Voce nao pode ir para o Norte, escolha um caminho válido.");
+                return false;
+            } else if (caminho == "Sul") {
+                this.jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaUm.png")));
+                this.jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaCincoNaPosicao.png")));
+                this.jogador.setPosicaoAtual(5);
+            } else if (caminho == "Leste") {
+                this.jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaUm.png")));
+                this.jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaDoisNaPosicao.png")));
+                this.jogador.setPosicaoAtual(2);
+            } else if (caminho == "Oeste") {
+                JOptionPane.showMessageDialog(null, "Voce nao pode ir para o Oeste, escolha um caminho válido.");
+                return false;
+            }
+        } else if (posicao == 2) {
+            if (caminho == "Norte") {
+                JOptionPane.showMessageDialog(null, "Voce nao pode ir para o Norte, escolha um caminho válido.");
+                return false;
+            } else if (caminho == "Sul") {
+                this.jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaDois.png")));
+                this.jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaSeisNaPosicao.png")));
+                this.jogador.setPosicaoAtual(6);
+            } else if (caminho == "Leste") {
+                this.jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaDois.png")));
+                this.jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaTresNaPosicao.png")));
+                this.jogador.setPosicaoAtual(3);
+            } else if (caminho == "Oeste") {
+                this.jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaDois.png")));
+                this.jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaUmNaPosicao.png")));
+                this.jogador.setPosicaoAtual(1);
+            }
+        } else if (posicao == 3) {
+            if (caminho == "Norte") {
+                JOptionPane.showMessageDialog(null, "Voce nao pode ir para o Norte, escolha um caminho válido.");
+                return false;
+            } else if (caminho == "Sul") {
+                this.jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaTres.png")));
+                this.jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaSeteNaPosicao.png")));
+                this.jogador.setPosicaoAtual(7);
+            } else if (caminho == "Leste") {
+                this.jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaTres.png")));
+                this.jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaQuatroNaPosicao.png")));
+                this.jogador.setPosicaoAtual(4);
+            } else if (caminho == "Oeste") {
+                this.jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaTres.png")));
+                this.jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaDoisNaPosicao.png")));
+                this.jogador.setPosicaoAtual(2);
+            }
+        } else if (posicao == 4) {
+            if (caminho == "Norte") {
+                JOptionPane.showMessageDialog(null, "Voce nao pode ir para o Norte, escolha um caminho válido.");
+                return false;
+            } else if (caminho == "Sul") {
+                this.jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaQuatro.png")));
+                this.jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaOitoNaPosicao.png")));
+                this.jogador.setPosicaoAtual(8);
+            } else if (caminho == "Leste") {
+                JOptionPane.showMessageDialog(null, "Voce nao pode ir para o Norte, escolha um caminho válido.");
+                return false;
+            } else if (caminho == "Oeste") {
+                this.jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaQuatro.png")));
+                this.jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaTres.png")));
+                this.jogador.setPosicaoAtual(3);
+            }
+        } else if (posicao == 5) {
+            if (caminho == "Norte") {
+                this.jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaCinco.png")));
+                this.jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaUmNaPosicao.png")));
+                this.jogador.setPosicaoAtual(1);
+            } else if (caminho == "Sul") {
+                this.jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaCinco.png")));
+                this.jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaNoveNaPosicao.png")));
+                this.jogador.setPosicaoAtual(9);
+            } else if (caminho == "Leste") {
+                this.jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaCinco.png")));
+                this.jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaSeisNaPosicao.png")));
+                this.jogador.setPosicaoAtual(6);
+            } else if (caminho == "Oeste") {
+                JOptionPane.showMessageDialog(null, "Voce nao pode ir para o Oeste, escolha um caminho válido.");
+                return false;
+            }
+        } else if (posicao == 6) {
+            if (caminho == "Norte") {
+                this.jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaSeis.png")));
+                this.jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaDoisNaPosicao.png")));
+                this.jogador.setPosicaoAtual(2);
+            } else if (caminho == "Sul") {
+                this.jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaSeis.png")));
+                this.jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaDezNaPosicao.png")));
+                this.jogador.setPosicaoAtual(10);
+            } else if (caminho == "Leste") {
+                this.jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaSeis.png")));
+                this.jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaSeteNaPosicao.png")));
+                this.jogador.setPosicaoAtual(7);
+            } else if (caminho == "Oeste") {
+                this.jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaSeis.png")));
+                this.jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaCincoNaPosicao.png")));
+                this.jogador.setPosicaoAtual(5);
+            }
+        } else if (posicao == 7) {
+            if (caminho == "Norte") {
+                this.jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaSete.png")));
+                this.jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaTresNaPosicao.png")));
+                this.jogador.setPosicaoAtual(3);
+            } else if (caminho == "Sul") {
+                this.jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaSete.png")));
+                this.jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaOnzeNaPosicao.png")));
+                this.jogador.setPosicaoAtual(11);
+            } else if (caminho == "Leste") {
+                this.jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaSete.png")));
+                this.jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaOitoNaPosicao.png")));
+                this.jogador.setPosicaoAtual(8);
+            } else if (caminho == "Oeste") {
+                this.jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaSete.png")));
+                this.jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaSeisNaPosicao.png")));
+                this.jogador.setPosicaoAtual(6);
+            }
+        } else if (posicao == 8) {
+            if (caminho == "Norte") {
+                this.jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaOito.png")));
+                this.jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaQuatroNaPosicao.png")));
+                this.jogador.setPosicaoAtual(4);
+            } else if (caminho == "Sul") {
+                this.jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaOito.png")));
+                this.jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaDozeNaPosicao.png")));
+                this.jogador.setPosicaoAtual(12);
+            } else if (caminho == "Leste") {
+                JOptionPane.showMessageDialog(null, "Voce nao pode ir para o Oeste, escolha um caminho válido.");
+                return false;
+            } else if (caminho == "Oeste") {
+                this.jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaOito.png")));
+                this.jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaSeteNaPosicao.png")));
+                this.jogador.setPosicaoAtual(7);
+            }
+        } else if (posicao == 9) {
+            if (caminho == "Norte") {
+                this.jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaNove.png")));
+                this.jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaCincoNaPosicao.png")));
+                this.jogador.setPosicaoAtual(5);
+            } else if (caminho == "Sul") {
+                this.jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaNove.png")));
+                this.jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaTrezeNaPosicao.png")));
+                this.jogador.setPosicaoAtual(13);
+            } else if (caminho == "Leste") {
+                this.jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaNove.png")));
+                this.jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaDezNaPosicao.png")));
+                this.jogador.setPosicaoAtual(10);
+            } else if (caminho == "Oeste") {
+                JOptionPane.showMessageDialog(null, "Voce nao pode ir para o Oeste, escolha um caminho válido.");
+                return false;
+            }
+        } else if (posicao == 10) {
+            if (caminho == "Norte") {
+                this.jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaDez.png")));
+                this.jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaSeisNaPosicao.png")));
+                this.jogador.setPosicaoAtual(6);
+            } else if (caminho == "Sul") {
+                this.jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaDez.png")));
+                this.jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaCatorzeNaPosicao.png")));
+                this.jogador.setPosicaoAtual(14);
+            } else if (caminho == "Leste") {
+                this.jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaDez.png")));
+                this.jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaOnzeNaPosicao.png")));
+                this.jogador.setPosicaoAtual(11);
+            } else if (caminho == "Oeste") {
+                this.jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaDez.png")));
+                this.jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaNoveNaPosicao.png")));
+                this.jogador.setPosicaoAtual(9);
+            }
+        } else if (posicao == 11) {
+            if (caminho == "Norte") {
+                this.jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaOnze.png")));
+                this.jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaSeteNaPosicao.png")));
+                this.jogador.setPosicaoAtual(7);
+            } else if (caminho == "Sul") {
+                this.jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaOnze.png")));
+                this.jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaQuinzeNaPosicao.png")));
+                this.jogador.setPosicaoAtual(15);
+            } else if (caminho == "Leste") {
+                this.jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaOnze.png")));
+                this.jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaDozeNaPosicao.png")));
+                this.jogador.setPosicaoAtual(12);
+            } else if (caminho == "Oeste") {
+                this.jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaOnze.png")));
+                this.jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaDezNaPosicao.png")));
+                this.jogador.setPosicaoAtual(10);
+            }
+        } else if (posicao == 12) {
+            if (caminho == "Norte") {
+                this.jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaDoze.png")));
+                this.jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaOitoNaPosicao.png")));
+                this.jogador.setPosicaoAtual(8);
+            } else if (caminho == "Sul") {
+                this.jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaDoze.png")));
+                this.jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaDezesseisNaPosicao.png")));
+                this.jogador.setPosicaoAtual(16);
+            } else if (caminho == "Leste") {
+                JOptionPane.showMessageDialog(null, "Voce nao pode ir para o Oeste, escolha um caminho válido.");
+                return false;
+            } else if (caminho == "Oeste") {
+                this.jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaDoze.png")));
+                this.jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaOnzeNaPosicao.png")));
+                this.jogador.setPosicaoAtual(11);
+            }
+        } else if (posicao == 13) {
+            if (caminho == "Norte") {
+                this.jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaTreze.png")));
+                this.jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaNoveNaPosicao.png")));
+                this.jogador.setPosicaoAtual(9);
+            } else if (caminho == "Sul") {
+                JOptionPane.showMessageDialog(null, "Voce nao pode ir para o Norte, escolha um caminho válido.");
+                return false;
+            } else if (caminho == "Leste") {
+                this.jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaTreze.png")));
+                this.jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaCatorzeNaPosicao.png")));
+                this.jogador.setPosicaoAtual(14);
+            } else if (caminho == "Oeste") {
+                JOptionPane.showMessageDialog(null, "Voce nao pode ir para o Oeste, escolha um caminho válido.");
+                return false;
+            }
+        } else if (posicao == 14) {
+            if (caminho == "Norte") {
+                this.jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaCatorze.png")));
+                this.jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaDezNaPosicao.png")));
+                this.jogador.setPosicaoAtual(10);
+            } else if (caminho == "Sul") {
+                JOptionPane.showMessageDialog(null, "Voce nao pode ir para o Oeste, escolha um caminho válido.");
+                return false;
+            } else if (caminho == "Leste") {
+                this.jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaCatorze.png")));
+                this.jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaQuinzeNaPosicao.png")));
+                this.jogador.setPosicaoAtual(15);
+            } else if (caminho == "Oeste") {
+                this.jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaCatorze.png")));
+                this.jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaTrezeNaPosicao.png")));
+                this.jogador.setPosicaoAtual(13);
+            }
+        } else if (posicao == 15) {
+            if (caminho == "Norte") {
+                this.jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaQuinze.png")));
+                this.jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaOnzeNaPosicao.png")));
+                this.jogador.setPosicaoAtual(11);
+            } else if (caminho == "Sul") {
+                JOptionPane.showMessageDialog(null, "Voce nao pode ir para o Norte, escolha um caminho válido.");
+                return false;
+            } else if (caminho == "Leste") {
+                this.jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaQuinze.png")));
+                this.jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaDezesseisNaPosicao.png")));
+                this.jogador.setPosicaoAtual(16);
+            } else if (caminho == "Oeste") {
+                this.jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaQuinze.png")));
+                this.jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaCatorzeNaPosicao.png")));
+                this.jogador.setPosicaoAtual(14);
+            }
+        } else if (posicao == 16) {
+            if (caminho == "Norte") {
+                this.jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaDezesseis.png")));
+                this.jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaDozeNaPosicao.png")));
+                this.jogador.setPosicaoAtual(12);
+            } else if (caminho == "Sul") {
+                JOptionPane.showMessageDialog(null, "Voce nao pode ir para o Norte, escolha um caminho válido.");
+                return false;
+            } else if (caminho == "Leste") {
+                JOptionPane.showMessageDialog(null, "Voce nao pode ir para o Norte, escolha um caminho válido.");
+                return false;
+            } else if (caminho == "Oeste") {
+                this.jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaDezesseis.png")));
+                this.jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapaQuinzeNaPosicao.png")));
+                this.jogador.setPosicaoAtual(15);
+            }
+        }
+        return true;
+    }
+
+    public boolean setRandomItem(int numeroRandom, int cliques) {
+        if (cliques == 1) {
             if (numeroRandom == 1) {
                 this.jogador.getPersonagem().setItem1("ataque", 10);
             }
@@ -381,7 +347,7 @@ public class TelaJornada extends javax.swing.JFrame {
                 this.jogador.getPersonagem().setItem1("vida", 10);
             }
         }
-        if(cliques==2){
+        if (cliques == 2) {
             if (numeroRandom == 1) {
                 this.jogador.getPersonagem().setItem2("ataque", 10);
             }
@@ -391,7 +357,8 @@ public class TelaJornada extends javax.swing.JFrame {
             if (numeroRandom == 3) {
                 this.jogador.getPersonagem().setItem2("vida", 10);
             }
-        }if(cliques==3){
+        }
+        if (cliques == 3) {
             if (numeroRandom == 1) {
                 this.jogador.getPersonagem().setItem3("ataque", 10);
             }
@@ -402,6 +369,7 @@ public class TelaJornada extends javax.swing.JFrame {
                 this.jogador.getPersonagem().setItem3("vida", 10);
             }
         }
+        return true;
     }
 
     /**
@@ -588,10 +556,10 @@ public class TelaJornada extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel1)
-                        .addComponent(jLabel2)
-                        .addComponent(jLabel3))
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jLabel1))
                     .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -640,30 +608,31 @@ public class TelaJornada extends javax.swing.JFrame {
 
     private void jButtonIrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIrActionPerformed
         // TODO add your handling code here:
-        this.jComboBoxCaminho.setEnabled(false);
-        this.jButtonIr.setEnabled(false);
-        calculaMovimento(this.jogador.getPosicaoAtual(), jComboBoxCaminho.getSelectedItem().toString());
-        cliques++;
-        if (cliques > 3) {
-            JOptionPane.showMessageDialog(null, "Você atingiu o número máximo de itens.");
-        } else {
-            Random r = new Random();
-            int numeroRandom = r.nextInt(3) + 1;
-            setRandomItem(numeroRandom, cliques);
-            if (numeroRandom == 1) {
-                ImageIcon pocaoAtaque = new ImageIcon(TelaJornada.class.getResource("/images/pocao_ataque.png"));
-                JOptionPane.showMessageDialog(null, "", "Você encontrou uma poção de ataque!", JOptionPane.INFORMATION_MESSAGE, pocaoAtaque);
-                model.addElement(String.format("poção de ataque"));
-            }
-            if (numeroRandom == 2) {
-                ImageIcon pocaoDefesa = new ImageIcon(TelaJornada.class.getResource("/images/pocao_defesa.png"));
-                JOptionPane.showMessageDialog(null, "", "Você encontrou uma poção de defesa!", JOptionPane.INFORMATION_MESSAGE, pocaoDefesa);
-                model.addElement(String.format("poção de defesa"));
-            }
-            if (numeroRandom == 3) {
-                ImageIcon pocaoVida = new ImageIcon(TelaJornada.class.getResource("/images/pocao_vida.png"));
-                JOptionPane.showMessageDialog(null, "", "Você encontrou uma poção de vida!", JOptionPane.INFORMATION_MESSAGE, pocaoVida);
-                model.addElement(String.format("poção de vida"));
+        if (calculaMovimento(this.jogador.getPosicaoAtual(), jComboBoxCaminho.getSelectedItem().toString()) == true) {
+            this.jComboBoxCaminho.setEnabled(false);
+            this.jButtonIr.setEnabled(false);
+            cliques++;
+            if (cliques > 3) {
+                JOptionPane.showMessageDialog(null, "Você atingiu o número máximo de itens.");
+            } else {
+                Random r = new Random();
+                int numeroRandom = r.nextInt(3) + 1;
+                setRandomItem(numeroRandom, cliques);
+                if (numeroRandom == 1) {
+                    ImageIcon pocaoAtaque = new ImageIcon(TelaJornada.class.getResource("/images/pocao_ataque.png"));
+                    JOptionPane.showMessageDialog(null, "", "Você encontrou uma poção de ataque!", JOptionPane.INFORMATION_MESSAGE, pocaoAtaque);
+                    model.addElement(String.format("poção de ataque"));
+                }
+                if (numeroRandom == 2) {
+                    ImageIcon pocaoDefesa = new ImageIcon(TelaJornada.class.getResource("/images/pocao_defesa.png"));
+                    JOptionPane.showMessageDialog(null, "", "Você encontrou uma poção de defesa!", JOptionPane.INFORMATION_MESSAGE, pocaoDefesa);
+                    model.addElement(String.format("poção de defesa"));
+                }
+                if (numeroRandom == 3) {
+                    ImageIcon pocaoVida = new ImageIcon(TelaJornada.class.getResource("/images/pocao_vida.png"));
+                    JOptionPane.showMessageDialog(null, "", "Você encontrou uma poção de vida!", JOptionPane.INFORMATION_MESSAGE, pocaoVida);
+                    model.addElement(String.format("poção de vida"));
+                }
             }
         }
     }//GEN-LAST:event_jButtonIrActionPerformed
@@ -671,6 +640,8 @@ public class TelaJornada extends javax.swing.JFrame {
     private void jButtonTerminarJogadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTerminarJogadaActionPerformed
         // TODO add your handling code here:
         this.atorJogador.enviarPosicao(this.jogador.getPosicaoAtual(), true);
+        this.jButtonTerminarJogada.setEnabled(false);
+        JOptionPane.showMessageDialog(null, "Você terminou sua jogada. Aguarde a jogada do adversário.");
     }//GEN-LAST:event_jButtonTerminarJogadaActionPerformed
 
 

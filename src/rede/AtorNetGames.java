@@ -111,8 +111,7 @@ public class AtorNetGames implements OuvidorProxy{
     
     @Override
     public void receberJogada(Jogada jogada) {
-        if (jogada instanceof EstadoMapa)
-        {
+        if (jogada instanceof EstadoMapa){
             EstadoMapa estadoMapa = (EstadoMapa) jogada;
             atorJogador.receberPosicao(estadoMapa);
         } else {
