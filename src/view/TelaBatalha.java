@@ -1,7 +1,9 @@
 package view;
 
+import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import model.Item;
 import rede.AtorJogador;
 import rede.EstadoDoJogo;
 
@@ -13,18 +15,18 @@ public class TelaBatalha extends javax.swing.JFrame {
     public TelaBatalha(AtorJogador atorJogador) {
         this.atorJogador = atorJogador;
         initComponents();
+    }
+    
+    public void exibeTela() {
         inicializarImagensPersonagens();
         this.remove(jLabelImagemMeuPersonagem);
         mostrarMeusItens();
         setResizable(false);
         setVisible(true);
-        if(this.atorJogador.comecouJogando()==false){
-//            desabilitaBotoes();
-        }
-        else
-            this.atorJogador.enviarEstado();
+        setResizable(false);
+        setVisible(true);
     }
-    
+     
     private void inicializarImagensPersonagens() {
         jLabelMostraMinhaVida.setText(Integer.toString(this.atorJogador.getJogador().getPersonagem().getVida()));
         jLabelMostrarMeuAtaque.setText(Integer.toString(this.atorJogador.getJogador().getPersonagem().getAtaque()));
@@ -48,12 +50,10 @@ public class TelaBatalha extends javax.swing.JFrame {
     
     private void mostrarMeusItens() {
         jListItens.setModel(model);
-        String item1 = "poção de "+this.atorJogador.getJogador().getPersonagem().getTipoItem1();
-        String item2 = "poção de "+this.atorJogador.getJogador().getPersonagem().getTipoItem2();
-        String item3 = "poção de "+this.atorJogador.getJogador().getPersonagem().getTipoItem3();
-        model.addElement(String.format(item1));
-        model.addElement(String.format(item2));
-        model.addElement(String.format(item3));
+        ArrayList<Item> itens = this.atorJogador.getJogador().getPersonagem().getItemArrayList();
+        for(Item item : itens) {
+            model.addElement(String.format("poção de " + item.getTipo()));
+        }
     }
    
     

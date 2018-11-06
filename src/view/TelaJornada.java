@@ -36,6 +36,10 @@ public class TelaJornada extends javax.swing.JFrame {
         inicializaJogador();
     }
     
+    public void fechaTela(){
+        this.dispose();
+    }
+        
     public void habilitarBotoes() {
         this.jButtonTerminarJogada.setEnabled(true);
         this.jComboBoxCaminho.setEnabled(true);
@@ -335,40 +339,16 @@ public class TelaJornada extends javax.swing.JFrame {
         return true;
     }
 
-    public boolean setRandomItem(int numeroRandom, int cliques) {
-        if (cliques == 1) {
+    public boolean setRandomItem(int numeroRandom) {
             if (numeroRandom == 1) {
-                this.jogador.getPersonagem().setItem1("ataque", 10);
+                this.jogador.getPersonagem().setItem("ataque", 10);
             }
             if (numeroRandom == 2) {
-                this.jogador.getPersonagem().setItem1("defesa", 10);
+                this.jogador.getPersonagem().setItem("defesa", 10);
             }
             if (numeroRandom == 3) {
-                this.jogador.getPersonagem().setItem1("vida", 10);
+                this.jogador.getPersonagem().setItem("vida", 10);
             }
-        }
-        if (cliques == 2) {
-            if (numeroRandom == 1) {
-                this.jogador.getPersonagem().setItem2("ataque", 10);
-            }
-            if (numeroRandom == 2) {
-                this.jogador.getPersonagem().setItem2("defesa", 10);
-            }
-            if (numeroRandom == 3) {
-                this.jogador.getPersonagem().setItem2("vida", 10);
-            }
-        }
-        if (cliques == 3) {
-            if (numeroRandom == 1) {
-                this.jogador.getPersonagem().setItem3("ataque", 10);
-            }
-            if (numeroRandom == 2) {
-                this.jogador.getPersonagem().setItem3("defesa", 10);
-            }
-            if (numeroRandom == 3) {
-                this.jogador.getPersonagem().setItem3("vida", 10);
-            }
-        }
         return true;
     }
 
@@ -611,13 +591,9 @@ public class TelaJornada extends javax.swing.JFrame {
         if (calculaMovimento(this.jogador.getPosicaoAtual(), jComboBoxCaminho.getSelectedItem().toString()) == true) {
             this.jComboBoxCaminho.setEnabled(false);
             this.jButtonIr.setEnabled(false);
-            cliques++;
-            if (cliques > 3) {
-                JOptionPane.showMessageDialog(null, "Você atingiu o número máximo de itens.");
-            } else {
                 Random r = new Random();
                 int numeroRandom = r.nextInt(3) + 1;
-                setRandomItem(numeroRandom, cliques);
+                setRandomItem(numeroRandom);
                 if (numeroRandom == 1) {
                     ImageIcon pocaoAtaque = new ImageIcon(TelaJornada.class.getResource("/images/pocao_ataque.png"));
                     JOptionPane.showMessageDialog(null, "", "Você encontrou uma poção de ataque!", JOptionPane.INFORMATION_MESSAGE, pocaoAtaque);
@@ -633,15 +609,19 @@ public class TelaJornada extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "", "Você encontrou uma poção de vida!", JOptionPane.INFORMATION_MESSAGE, pocaoVida);
                     model.addElement(String.format("poção de vida"));
                 }
-            }
         }
     }//GEN-LAST:event_jButtonIrActionPerformed
 
     private void jButtonTerminarJogadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTerminarJogadaActionPerformed
         // TODO add your handling code here:
-        this.atorJogador.enviarPosicao(this.jogador.getPosicaoAtual(), true);
-        this.jButtonTerminarJogada.setEnabled(false);
-        JOptionPane.showMessageDialog(null, "Você terminou sua jogada. Aguarde a jogada do adversário.");
+        if(this.jButtonIr.isEnabled() == false){
+            this.atorJogador.enviarPosicao(this.jogador.getPosicaoAtual(), true);
+            this.jButtonTerminarJogada.setEnabled(false);
+            JOptionPane.showMessageDialog(null, "Você terminou sua jogada. Aguarde a jogada do adversário.");
+        }
+        else {
+            JOptionPane.showMessageDialog(null, "Voce só pode terminar uma jogada se já tiver percorrido um caminho.");
+        }
     }//GEN-LAST:event_jButtonTerminarJogadaActionPerformed
 
 

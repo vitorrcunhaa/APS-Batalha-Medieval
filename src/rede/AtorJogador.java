@@ -20,11 +20,14 @@ public class AtorJogador {
     protected TelaPrincipal telaPrincipal;
     protected TelaEscolhaPersonagem telaEscolhaPersonagem;
     protected TelaJornada telaJornada;
+    protected TelaBatalha telaBatalha;
+
 
     public AtorJogador() {
         this.telaPrincipal = new TelaPrincipal(this);
         this.telaEscolhaPersonagem = new TelaEscolhaPersonagem(this);
         this.telaJornada = new TelaJornada(this);
+        this.telaBatalha = new TelaBatalha(this);
         atorNetGames = new AtorNetGames(this);
         exibeTela();
     }
@@ -39,6 +42,10 @@ public class AtorJogador {
 
     public void exibeTela() {
         this.telaPrincipal.exibeTela();
+    }
+
+    public void exibeTelaBatalha() {
+        this.telaBatalha.exibeTela();
     }
 
     public void exibeTelaPersonagem() {
@@ -76,18 +83,7 @@ public class AtorJogador {
             JOptionPane.showMessageDialog(telaPrincipal, "Nenhum jogador criado.");
         }
     }
-    public String getTipoItem1(){
-        return this.controlador.getJogadorLocal().getPersonagem().getTipoItem1();
-    }
     
-    public String getTipoItem2(){
-        return this.controlador.getJogadorLocal().getPersonagem().getTipoItem2();
-    }
-    
-    public String getTipoItem3(){
-        return this.controlador.getJogadorLocal().getPersonagem().getTipoItem3();
-    }
- 
     public void iniciarPartidaPedido() {
         atorNetGames.iniciarPartidaRede();
     }
@@ -189,6 +185,8 @@ public class AtorJogador {
         if(this.controlador.getJogador1() != null){
             if(estadoMapa.getMinhaPosicao() == this.controlador.getJogador1().getPosicaoAtual()) {
             JOptionPane.showMessageDialog(null, "Você encontrou um oponente. Hora da batalha!");
+            this.telaJornada.fechaTela();
+            this.telaBatalha.exibeTela();
             }
         }
         else {
