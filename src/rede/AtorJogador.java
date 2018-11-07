@@ -108,22 +108,14 @@ public class AtorJogador {
             Jogador jogador = this.controlador.getJogador2();
             jogador.setPosicaoAtual(16);
             this.exibeTelaJornada();
-            // implementar(se necessario)this.telaPrincipal.atualizarNomeJogador1(nomeOutroJogador, false);
-            // implementar(se necessario)this.telaPrincipal.atualizarNomeJogador2(this.nome, true);
-            // desabiliar botoes
-
         }
-        // o atualizarInterface estado deve atualizar pelo menos o numero de etapas
-        // na tela de batalha ou na tela de jornada
     }
 
     public void desistir() {
         if (atorNetGames.ehMinhaVez()) {
             controlador.desistir();
             this.enviarEstado();
-//            this.telaPrincipal.atualizarInterface(controlador.getEstado());
             this.telaPrincipal.showDialog("Você se rendeu. O jogo acabou.");
-            //desabilitar botoes
         } else {
             this.telaPrincipal.showDialog("Não é a sua vez.");
         }
@@ -169,22 +161,21 @@ public class AtorJogador {
     }
 
     public void receberEstado(EstadoDoJogo estado) {
-        JOptionPane.showMessageDialog(null, "vc recebeu um estado");
-        this.controlador.setEstado(estado);
-        this.atorNetGames.minhaVez = true;
-        if (!controlador.setEstado(estado)) {
-            this.getTelaPrincipal().showDialog("nao recebeu estado");
-        } else {
-            //habilitar botoes
+        if(estado.getEstadoDoJogo().isPrimeiraJogada()) {
+            this.telaBatalha.exibeTela();
+            this.telaBatalha.preencheInformacoesOponente(estado.getJogador());
+            estado.getEstadoDoJogo().setPrimeiraJogada(false);
+            this.controlador.setEstado(estado);
         }
     }
     
     public void receberPosicao(EstadoMapa estadoMapa) {
         JOptionPane.showMessageDialog(null, "Sua vez!");
-        this.atorNetGames.minhaVez = true;
         if(this.controlador.getJogador1() != null){
             if(estadoMapa.getMinhaPosicao() == this.controlador.getJogador1().getPosicaoAtual()) {
             JOptionPane.showMessageDialog(null, "Você encontrou um oponente. Hora da batalha!");
+            this.controlador.setEstado(new EstadoDoJogo(this.controlador.getJogador1(), false, false, true));
+            this.enviarEstado();
             this.telaJornada.fechaTela();
             this.telaBatalha.exibeTela();
             }
@@ -192,6 +183,10 @@ public class AtorJogador {
         else {
             if(estadoMapa.getMinhaPosicao() == this.controlador.getJogador2().getPosicaoAtual()) {
             JOptionPane.showMessageDialog(null, "Você encontrou um oponente. Hora da batalha!");
+            this.controlador.setEstado(new EstadoDoJogo(this.controlador.getJogador2(), false, false, true));
+            this.enviarEstado();
+            this.telaJornada.fechaTela();
+            this.telaBatalha.exibeTela();
             }
         }
         this.controlador.setEstadoMapa(estadoMapa.isMinhaVez(), estadoMapa.getMinhaPosicao());

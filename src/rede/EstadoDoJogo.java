@@ -9,43 +9,43 @@ import model.Jogador;
  */
 public class EstadoDoJogo implements Jogada{
 
-    protected boolean desistiu;
+    protected boolean desistir;
     protected boolean vencedor;
-    protected Jogador jogadorLocal;
-    protected Jogador jogadorRemoto;
+    protected boolean primeiraJogada;
+    protected Jogador jogador;
     
-    public EstadoDoJogo(Jogador jogadorLocal, Jogador jogadorRemoto, boolean desistiu, boolean vencedor) {
+    public EstadoDoJogo(Jogador jogador, boolean desistiu, boolean vencedor, boolean primeiraJogada) {
         super();
-        this.desistiu = desistiu;
+        this.desistir = desistiu;
         this.vencedor = vencedor;
-        this.jogadorLocal = jogadorLocal;
-        this.jogadorRemoto = jogadorRemoto;
-    }
-    
-    public Jogador getJogadorLocal(){
-        return jogadorLocal;
-    }
-    
-    public Jogador getJogadorRemoto(){
-        return jogadorRemoto;
-    }
-    
-    public void setJogadorLocal(Jogador jogadorLocal){
-        this.jogadorLocal = jogadorLocal;
-    }
-        
-    public void setJogadorRemoto(Jogador jogadorRemoto){
-        this.jogadorRemoto = jogadorRemoto;
-    }
-    
-    public boolean desistiu() {
-        return desistiu;
+        this.jogador = jogador;
+        this.primeiraJogada = primeiraJogada;
     }
 
-    public void desistir(boolean desistir) {
-        this.desistiu = desistir;
+        public boolean isPrimeiraJogada() {
+        return primeiraJogada;
     }
 
+    public void setPrimeiraJogada(boolean primeiraJogada) {
+        this.primeiraJogada = primeiraJogada;
+    }
+    
+    public boolean isDesistir() {
+        return desistir;
+    }
+
+    public void setDesistiu(boolean desistiu) {
+        this.desistir = desistiu;
+    }
+
+    public Jogador getJogador() {
+        return jogador;
+    }
+
+    public void setJogador(Jogador jogador) {
+        this.jogador = jogador;
+    }
+  
     public boolean isVencedor() {
         return vencedor;
     }
@@ -55,8 +55,7 @@ public class EstadoDoJogo implements Jogada{
     }
     
     public EstadoDoJogo getEstadoDoJogo(){
-        EstadoDoJogo estado = new EstadoDoJogo(getJogadorLocal(), getJogadorRemoto(), desistiu, vencedor);
+        EstadoDoJogo estado = new EstadoDoJogo(getJogador(), desistir, vencedor, primeiraJogada);
     	return estado;
     }
-
 }

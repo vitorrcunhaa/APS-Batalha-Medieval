@@ -232,20 +232,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void jMenuIniciarJornadaMenuSelected(javax.swing.event.MenuEvent evt) {//GEN-FIRST:event_jMenuIniciarJornadaMenuSelected
         // TODO add your handling code here:
         this.atorJogador.iniciarPartidaPedido();
-//        if(this.getPartidaIniciada()){
-////            JOptionPane.showMessageDialog(null, "Partida já iniciada pelo adversário, espere ele concluir a jogada.");
-//            TelaJornada telaJornada = new TelaJornada(atorJogador);
-//            atorJogador.exibeTelaJornada();
-//            jButtonDesistir.setEnabled(true);
-//        }
-//        else{
-//            this.atorJogador.iniciarPartidaPedido();
-//            if(this.getPartidaIniciada()){
-//                TelaJornada telaJornada = new TelaJornada(atorJogador);
-//                atorJogador.exibeTelaJornada();
-//                jButtonDesistir.setEnabled(true);
-//            }
-//        }
     }//GEN-LAST:event_jMenuIniciarJornadaMenuSelected
 
     private void jButtonDesistirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDesistirActionPerformed

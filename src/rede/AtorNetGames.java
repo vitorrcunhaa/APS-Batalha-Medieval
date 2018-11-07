@@ -12,7 +12,7 @@ import javax.swing.JPopupMenu;
  *
  * @author Vitor
  */
-public class AtorNetGames implements OuvidorProxy{
+public class AtorNetGames implements OuvidorProxy {
 
     protected AtorJogador atorJogador;
     protected Proxy proxy;
@@ -34,12 +34,11 @@ public class AtorNetGames implements OuvidorProxy{
             atorJogador.getTelaPrincipal().showDialog(msg.getMessage());
             atorJogador.getTelaPrincipal().setEstaConectado(false);
         }
-        if(proxy.obterNomeAdversarios().isEmpty())
-        {
+        if (proxy.obterNomeAdversarios().isEmpty()) {
             atorJogador.atorNetGames.minhaVez = true;
-        }
-        else
+        } else {
             atorJogador.atorNetGames.minhaVez = false;
+        }
     }
 
     public void desconectar() {
@@ -53,11 +52,11 @@ public class AtorNetGames implements OuvidorProxy{
     public void iniciarPartidaRede() {
         try {
             proxy.iniciarPartida(2);
-            if(proxy.obterNomeAdversarios().isEmpty()){
+            if (proxy.obterNomeAdversarios().isEmpty()) {
                 atorJogador.getTelaPrincipal().setPartidaIniciada(false);
-            }
-            else
+            } else {
                 atorJogador.getTelaPrincipal().setPartidaIniciada(true);
+            }
         } catch (NaoConectadoException e) {
             atorJogador.getTelaPrincipal().showDialog(e.getMessage());
             e.printStackTrace();
@@ -90,39 +89,38 @@ public class AtorNetGames implements OuvidorProxy{
     public void receberMensagem(String msg) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
-    public void enviarEstado(EstadoDoJogo mensagem){
-        try{
+
+    public void enviarEstado(EstadoDoJogo mensagem) {
+        try {
             proxy.enviaJogada(mensagem);
             minhaVez = false;
-        }catch (NaoJogandoException e){
+        } catch (NaoJogandoException e) {
             atorJogador.getTelaPrincipal().showDialog(e.getMessage());
         }
     }
-    
+
     public void enviarPosicao(EstadoMapa estado) {
-        try{
+        try {
             proxy.enviaJogada(estado);
             minhaVez = false;
-        }catch (NaoJogandoException e){
+        } catch (NaoJogandoException e) {
             atorJogador.getTelaPrincipal().showDialog(e.getMessage());
         }
     }
-    
+
     @Override
     public void receberJogada(Jogada jogada) {
-        if (jogada instanceof EstadoMapa){
+        if (jogada instanceof EstadoMapa) {
             EstadoMapa estadoMapa = (EstadoMapa) jogada;
             atorJogador.receberPosicao(estadoMapa);
         } else {
-        EstadoDoJogo estado = (EstadoDoJogo) jogada;
-        JOptionPane.showMessageDialog(null, "recebendo jogada");
-        atorJogador.receberEstado(estado);
-        minhaVez = true;
+            EstadoDoJogo estado = (EstadoDoJogo) jogada;
+            atorJogador.receberEstado(estado);
         }
+        minhaVez = true;
     }
-    
-    public boolean ehMinhaVez(){
+
+    public boolean ehMinhaVez() {
         return minhaVez;
     }
 

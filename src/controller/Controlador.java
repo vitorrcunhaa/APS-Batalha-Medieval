@@ -102,7 +102,7 @@ public class Controlador {
     		return false;
     	}
     	
-    	if(estado.desistiu()){
+    	if(estado.isDesistir()){
     		atorJogador.informarDesistencia();
     		return false;
     	}
