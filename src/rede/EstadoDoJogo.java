@@ -12,14 +12,25 @@ public class EstadoDoJogo implements Jogada{
     protected boolean desistir;
     protected boolean vencedor;
     protected boolean primeiraJogada;
+    protected boolean preparadoPraJogar;
+
     protected Jogador jogador;
     
-    public EstadoDoJogo(Jogador jogador, boolean desistiu, boolean vencedor, boolean primeiraJogada) {
+    public EstadoDoJogo(Jogador jogador, boolean desistiu, boolean vencedor, boolean primeiraJogada, boolean preparadoPraJogar) {
         super();
         this.desistir = desistiu;
         this.vencedor = vencedor;
         this.jogador = jogador;
         this.primeiraJogada = primeiraJogada;
+        this.preparadoPraJogar = preparadoPraJogar;
+    }
+
+    public boolean isPreparadoPraJogar() {
+        return preparadoPraJogar;
+    }
+
+    public void setPreparadoPraJogar(boolean preparadoPraJogar) {
+        this.preparadoPraJogar = preparadoPraJogar;
     }
 
         public boolean isPrimeiraJogada() {
@@ -55,7 +66,7 @@ public class EstadoDoJogo implements Jogada{
     }
     
     public EstadoDoJogo getEstadoDoJogo(){
-        EstadoDoJogo estado = new EstadoDoJogo(getJogador(), desistir, vencedor, primeiraJogada);
+        EstadoDoJogo estado = new EstadoDoJogo(getJogador(), desistir, vencedor, primeiraJogada, preparadoPraJogar);
     	return estado;
     }
 }

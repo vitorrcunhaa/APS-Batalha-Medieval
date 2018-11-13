@@ -19,7 +19,7 @@ public class TelaBatalha extends javax.swing.JFrame {
     }
     
     public void exibeTela() {
-        inicializarImagensPersonagens();
+        preencheMinhasInformacoes();
         this.remove(jLabelImagemMeuPersonagem);
         mostrarMeusItens();
         setResizable(false);
@@ -27,10 +27,26 @@ public class TelaBatalha extends javax.swing.JFrame {
     }
     
     public void preencheInformacoesOponente(Jogador oponente) {
-        //implementar
+        jLabelMostraVidaOponente.setText(Integer.toString(oponente.getPersonagem().getVida()));
+        jLabelTipoPersonagemOponente.setText(oponente.getPersonagem().getTipo());
+        
+        String tipoPersonagem = oponente.getPersonagem().getTipo();
+        if(tipoPersonagem.equals("Arqueiro")){
+            jLabelImagemOponente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/arqueiro.jpg")));
+            jLabelTipoPersonagemOponente.setText("Arqueiro");
+        }
+        else if(tipoPersonagem.equals("Guerreiro")){
+            jLabelImagemOponente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/guerreiro.jpg")));
+            jLabelTipoPersonagemOponente.setText("Guerreiro");
+        }
+        else if(tipoPersonagem.equals("Mago")){
+            jLabelImagemOponente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mago.jpg")));
+            jLabelTipoPersonagemOponente.setText("Mago");
+        }
+        
     }
      
-    private void inicializarImagensPersonagens() {
+    private void preencheMinhasInformacoes() {
         jLabelMostraMinhaVida.setText(Integer.toString(this.atorJogador.getJogador().getPersonagem().getVida()));
         jLabelMostrarMeuAtaque.setText(Integer.toString(this.atorJogador.getJogador().getPersonagem().getAtaque()));
         jLabelMostrarMinhaDefesa.setText(Integer.toString(this.atorJogador.getJogador().getPersonagem().getDefesa()));
@@ -73,12 +89,10 @@ public class TelaBatalha extends javax.swing.JFrame {
         jLabelMeuOponenteEhUm = new javax.swing.JLabel();
         jLabelMinhaVida = new javax.swing.JLabel();
         jLabelVidaOponente = new javax.swing.JLabel();
-        jLabelDanoCausado = new javax.swing.JLabel();
         jLabelMochila = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jListItens = new javax.swing.JList<>();
         jButtonUsarItem = new javax.swing.JButton();
-        jButtonDesistir = new javax.swing.JButton();
         jLabelImagemMeuPersonagem = new javax.swing.JLabel();
         jLabelImagemOponente = new javax.swing.JLabel();
         jButtonAtacar = new javax.swing.JButton();
@@ -91,7 +105,9 @@ public class TelaBatalha extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabelMostrarMinhaDefesa = new javax.swing.JLabel();
-        jButtonRevelar = new javax.swing.JButton();
+        jButtonAtacarArriscado = new javax.swing.JButton();
+        jLabelExplicaAtaqueArriscado1 = new javax.swing.JLabel();
+        jLabelExplicaAtaqueArriscado2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAutoRequestFocus(false);
@@ -104,8 +120,6 @@ public class TelaBatalha extends javax.swing.JFrame {
 
         jLabelVidaOponente.setText("Vida do oponente:");
 
-        jLabelDanoCausado.setText("Dano que causei no oponente");
-
         jLabelMochila.setText("Mochila");
 
         jListItens.setAutoscrolls(false);
@@ -117,15 +131,6 @@ public class TelaBatalha extends javax.swing.JFrame {
                 jButtonUsarItemActionPerformed(evt);
             }
         });
-
-        jButtonDesistir.setText("Desistir");
-        jButtonDesistir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonDesistirActionPerformed(evt);
-            }
-        });
-
-        jLabelImagemOponente.setText("jLabel1");
 
         jButtonAtacar.setText("Atacar");
         jButtonAtacar.addActionListener(new java.awt.event.ActionListener() {
@@ -150,28 +155,31 @@ public class TelaBatalha extends javax.swing.JFrame {
 
         jLabelMostrarMinhaDefesa.setText("jLabel4");
 
-        jButtonRevelar.setText("Revelar");
-        jButtonRevelar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonRevelarActionPerformed(evt);
-            }
-        });
+        jButtonAtacarArriscado.setText("Atacar Arriscado");
+
+        jLabelExplicaAtaqueArriscado1.setText("No ataque arriscado você poderá causar um maior dano,");
+
+        jLabelExplicaAtaqueArriscado2.setText("mas as chances de um dano mais alto são um pouco menores.");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(228, 228, 228)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButtonRevelar)
-                        .addGap(40, 40, 40)
-                        .addComponent(jButtonDesistir)
-                        .addGap(163, 163, 163))
+                        .addGap(22, 22, 22)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabelImagem)
+                            .addComponent(jLabelImagemMeuPersonagem)))
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(264, 264, 264)
+                        .addComponent(jButtonUsarItem)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(228, 228, 228)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -190,11 +198,17 @@ public class TelaBatalha extends javax.swing.JFrame {
                                             .addComponent(jLabelMostrarMeuAtaque)
                                             .addComponent(jLabelMostraMinhaVida)
                                             .addComponent(jLabelMostrarMinhaDefesa)))))
-                            .addComponent(jLabel3))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 253, Short.MAX_VALUE)
+                            .addComponent(jLabel3)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(237, 237, 237)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(45, 45, 45)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelDanoCausado)
                             .addGroup(layout.createSequentialGroup()
+                                .addComponent(jButtonAtacar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 526, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabelVidaOponente)
                                     .addComponent(jLabelMeuOponenteEhUm))
@@ -202,24 +216,19 @@ public class TelaBatalha extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabelMostraVidaOponente)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGap(1, 1, 1)
                                         .addComponent(jLabelTipoPersonagemOponente)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jLabelImagemOponente)))))
-                        .addGap(45, 45, 45))))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGap(35, 35, 35)
+                                        .addComponent(jLabelImagemOponente)))
+                                .addGap(45, 45, 45))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jButtonAtacarArriscado)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabelImagem)
-                            .addComponent(jLabelImagemMeuPersonagem)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(268, 268, 268)
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButtonUsarItem)
-                            .addComponent(jButtonAtacar))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jLabelExplicaAtaqueArriscado2)
+                            .addComponent(jLabelExplicaAtaqueArriscado1))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -231,54 +240,56 @@ public class TelaBatalha extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabelImagemMeuPersonagem))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabelMeuOponenteEhUm)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGap(30, 30, 30)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabelImagemOponente)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabelVidaOponente)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabelDanoCausado))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabelEuSouUm, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabelTipoPersonagemLocal))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                            .addComponent(jLabelMinhaVida)
-                                            .addComponent(jLabelMostraMinhaVida)))))
+                                            .addComponent(jLabelMeuOponenteEhUm)
+                                            .addComponent(jLabelTipoPersonagemOponente))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(jLabelEuSouUm, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(jLabelTipoPersonagemLocal))
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                                    .addComponent(jLabelMinhaVida)
+                                                    .addComponent(jLabelMostraMinhaVida))
+                                                .addGap(11, 11, 11)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(jLabel2)
+                                                    .addComponent(jLabelMostrarMeuAtaque)))
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                                .addComponent(jLabelVidaOponente)
+                                                .addComponent(jLabelMostraVidaOponente))))))
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabelTipoPersonagemOponente)
-                                    .addComponent(jLabelImagemOponente))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabelMostraVidaOponente)))
+                                .addGap(80, 80, 80)
+                                .addComponent(jButtonAtacar)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(66, 66, 66)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jButtonDesistir)
-                                    .addComponent(jButtonRevelar)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(11, 11, 11)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabelMostrarMeuAtaque))
-                                .addGap(15, 15, 15)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel3)
                                     .addComponent(jLabelMostrarMinhaDefesa))
-                                .addGap(15, 15, 15)
-                                .addComponent(jLabelMochila)
+                                .addGap(13, 13, 13)
+                                .addComponent(jLabelMochila))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(jButtonAtacarArriscado)))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabelExplicaAtaqueArriscado1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabelExplicaAtaqueArriscado2)))
+                .addGap(27, 27, 27)
                 .addComponent(jButtonUsarItem)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonAtacar)
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addContainerGap(290, Short.MAX_VALUE))
         );
 
         pack();
@@ -308,18 +319,9 @@ public class TelaBatalha extends javax.swing.JFrame {
         jButtonUsarItem.setEnabled(false);
     }//GEN-LAST:event_jButtonUsarItemActionPerformed
 
-    private void jButtonDesistirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDesistirActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonDesistirActionPerformed
-
     private void jButtonAtacarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAtacarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonAtacarActionPerformed
-
-    private void jButtonRevelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRevelarActionPerformed
-        // TODO add your handling code here:
-        this.atorJogador.enviarEstado();
-    }//GEN-LAST:event_jButtonRevelarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -327,13 +329,13 @@ public class TelaBatalha extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAtacar;
-    private javax.swing.JButton jButtonDesistir;
-    private javax.swing.JButton jButtonRevelar;
+    private javax.swing.JButton jButtonAtacarArriscado;
     private javax.swing.JButton jButtonUsarItem;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabelDanoCausado;
     private javax.swing.JLabel jLabelEuSouUm;
+    private javax.swing.JLabel jLabelExplicaAtaqueArriscado1;
+    private javax.swing.JLabel jLabelExplicaAtaqueArriscado2;
     private javax.swing.JLabel jLabelImagem;
     private javax.swing.JLabel jLabelImagemMeuPersonagem;
     private javax.swing.JLabel jLabelImagemOponente;
@@ -354,7 +356,6 @@ public class TelaBatalha extends javax.swing.JFrame {
     private void desabilitaBotoes() {
         jButtonAtacar.setEnabled(false);
         jButtonUsarItem.setEnabled(false);
-        jButtonDesistir.setEnabled(false);
     }
     
     public void atualizarInterface(EstadoDoJogo estado) {

@@ -162,11 +162,27 @@ public class AtorJogador {
 
     public void receberEstado(EstadoDoJogo estado) {
         if(estado.getEstadoDoJogo().isPrimeiraJogada()) {
+//           esta É a primeira vez que este metodo é chamado
+//           neste momento apenas uma tela de batalha consegue as informacoes do adversario
+//           por isso uma variavel auxiliar(preparadoParaJogar) é setada como true
+//           para devolver a jogada para o jogador que tinha a vez, e que ele tambem
+//           receba as informacoes do oponente
+            this.telaJornada.fechaTela();
             this.telaBatalha.exibeTela();
             this.telaBatalha.preencheInformacoesOponente(estado.getJogador());
             estado.getEstadoDoJogo().setPrimeiraJogada(false);
+            estado.getEstadoDoJogo().setPreparadoPraJogar(true);
+            //desabilita meus botoes
+            estado.setJogador(this.controlador.getJogador2()); //verificar se é jogador 2 ou se pode ser jogador 1 também
             this.controlador.setEstado(estado);
+            this.enviarEstado();
         }
+        if(estado.getEstadoDoJogo().isPreparadoPraJogar()) {
+            //aqui começará de fato a primeira 
+            this.telaBatalha.preencheInformacoesOponente(estado.getJogador());
+        }
+        //habilitar botoes
+        // criar variavel de auxilio boolean ehAtaque
     }
     
     public void receberPosicao(EstadoMapa estadoMapa) {
@@ -174,7 +190,7 @@ public class AtorJogador {
         if(this.controlador.getJogador1() != null){
             if(estadoMapa.getMinhaPosicao() == this.controlador.getJogador1().getPosicaoAtual()) {
             JOptionPane.showMessageDialog(null, "Você encontrou um oponente. Hora da batalha!");
-            this.controlador.setEstado(new EstadoDoJogo(this.controlador.getJogador1(), false, false, true));
+            this.controlador.setEstado(new EstadoDoJogo(this.controlador.getJogador1(), false, false, true, false));
             this.enviarEstado();
             this.telaJornada.fechaTela();
             this.telaBatalha.exibeTela();
@@ -183,7 +199,7 @@ public class AtorJogador {
         else {
             if(estadoMapa.getMinhaPosicao() == this.controlador.getJogador2().getPosicaoAtual()) {
             JOptionPane.showMessageDialog(null, "Você encontrou um oponente. Hora da batalha!");
-            this.controlador.setEstado(new EstadoDoJogo(this.controlador.getJogador2(), false, false, true));
+            this.controlador.setEstado(new EstadoDoJogo(this.controlador.getJogador2(), false, false, true, false));
             this.enviarEstado();
             this.telaJornada.fechaTela();
             this.telaBatalha.exibeTela();
