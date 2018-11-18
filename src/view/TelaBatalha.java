@@ -1,23 +1,23 @@
 package view;
 
 import java.util.ArrayList;
+import java.util.Random;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import model.Item;
 import model.Jogador;
 import rede.AtorJogador;
-import rede.EstadoDoJogo;
 
 public class TelaBatalha extends javax.swing.JFrame {
 
     protected AtorJogador atorJogador;
     DefaultListModel model = new DefaultListModel();
-    
+
     public TelaBatalha(AtorJogador atorJogador) {
         this.atorJogador = atorJogador;
         initComponents();
     }
-    
+
     public void exibeTela() {
         preencheMinhasInformacoes();
         this.remove(jLabelImagemMeuPersonagem);
@@ -25,57 +25,56 @@ public class TelaBatalha extends javax.swing.JFrame {
         setResizable(false);
         setVisible(true);
     }
-    
+
     public void preencheInformacoesOponente(Jogador oponente) {
         jLabelMostraVidaOponente.setText(Integer.toString(oponente.getPersonagem().getVida()));
         jLabelTipoPersonagemOponente.setText(oponente.getPersonagem().getTipo());
-        
+
         String tipoPersonagem = oponente.getPersonagem().getTipo();
-        if(tipoPersonagem.equals("Arqueiro")){
-            jLabelImagemOponente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/arqueiro.jpg")));
+        if (tipoPersonagem.equals("Arqueiro")) {
+            jLabelImagemAtualOponente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/arqueiro.jpg")));
             jLabelTipoPersonagemOponente.setText("Arqueiro");
-        }
-        else if(tipoPersonagem.equals("Guerreiro")){
-            jLabelImagemOponente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/guerreiro.jpg")));
+        } else if (tipoPersonagem.equals("Guerreiro")) {
+            jLabelImagemAtualOponente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/guerreiro.jpg")));
             jLabelTipoPersonagemOponente.setText("Guerreiro");
-        }
-        else if(tipoPersonagem.equals("Mago")){
-            jLabelImagemOponente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mago.jpg")));
+        } else if (tipoPersonagem.equals("Mago")) {
+            jLabelImagemAtualOponente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mago.jpg")));
             jLabelTipoPersonagemOponente.setText("Mago");
         }
-        
+
     }
-     
+
     private void preencheMinhasInformacoes() {
         jLabelMostraMinhaVida.setText(Integer.toString(this.atorJogador.getJogador().getPersonagem().getVida()));
         jLabelMostrarMeuAtaque.setText(Integer.toString(this.atorJogador.getJogador().getPersonagem().getAtaque()));
         jLabelMostrarMinhaDefesa.setText(Integer.toString(this.atorJogador.getJogador().getPersonagem().getDefesa()));
 
-        if(this.atorJogador.getJogador().getPersonagem().getTipo()=="Arqueiro"){
+        if (this.atorJogador.getJogador().getPersonagem().getTipo() == "Arqueiro") {
             jLabelImagem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/arqueiro.jpg")));
             jLabelTipoPersonagemLocal.setText("Arqueiro");
-        }
-        else if(this.atorJogador.getJogador().getPersonagem().getTipo()=="Guerreiro"){
+        } else if (this.atorJogador.getJogador().getPersonagem().getTipo() == "Guerreiro") {
             jLabelImagem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/guerreiro.jpg")));
             jLabelTipoPersonagemLocal.setText("Guerreiro");
-        }
-        else if(this.atorJogador.getJogador().getPersonagem().getTipo()=="Mago"){
+        } else if (this.atorJogador.getJogador().getPersonagem().getTipo() == "Mago") {
             jLabelImagem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mago.jpg")));
             jLabelTipoPersonagemLocal.setText("Mago");
-        }
-        else
+        } else {
             JOptionPane.showMessageDialog(null, "Tipo de personagem do jogador local não encontrado.");
+        }
     }
-    
+
     private void mostrarMeusItens() {
         jListItens.setModel(model);
         ArrayList<Item> itens = this.atorJogador.getJogador().getPersonagem().getItemArrayList();
-        for(Item item : itens) {
+        for (Item item : itens) {
             model.addElement(String.format("poção de " + item.getTipo()));
         }
     }
-   
-    
+
+    public int numeroDeItens() {
+        return model.getSize();
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -108,22 +107,32 @@ public class TelaBatalha extends javax.swing.JFrame {
         jButtonAtacarArriscado = new javax.swing.JButton();
         jLabelExplicaAtaqueArriscado1 = new javax.swing.JLabel();
         jLabelExplicaAtaqueArriscado2 = new javax.swing.JLabel();
+        jLabelImagemAtualOponente = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAutoRequestFocus(false);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabelEuSouUm.setText("Eu sou um:");
+        getContentPane().add(jLabelEuSouUm, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 50, -1, -1));
 
         jLabelMeuOponenteEhUm.setText("Meu oponente é um:");
+        getContentPane().add(jLabelMeuOponenteEhUm, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 40, -1, -1));
 
         jLabelMinhaVida.setText("Vida:");
+        getContentPane().add(jLabelMinhaVida, new org.netbeans.lib.awtextra.AbsoluteConstraints(228, 75, -1, -1));
 
         jLabelVidaOponente.setText("Vida do oponente:");
+        getContentPane().add(jLabelVidaOponente, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 60, -1, -1));
 
         jLabelMochila.setText("Mochila");
+        getContentPane().add(jLabelMochila, new org.netbeans.lib.awtextra.AbsoluteConstraints(284, 152, -1, -1));
 
         jListItens.setAutoscrolls(false);
         jScrollPane1.setViewportView(jListItens);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(237, 172, 132, 87));
 
         jButtonUsarItem.setText("Usar item");
         jButtonUsarItem.addActionListener(new java.awt.event.ActionListener() {
@@ -131,6 +140,9 @@ public class TelaBatalha extends javax.swing.JFrame {
                 jButtonUsarItemActionPerformed(evt);
             }
         });
+        getContentPane().add(jButtonUsarItem, new org.netbeans.lib.awtextra.AbsoluteConstraints(264, 286, -1, -1));
+        getContentPane().add(jLabelImagemMeuPersonagem, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 15, -1, -1));
+        getContentPane().add(jLabelImagemOponente, new org.netbeans.lib.awtextra.AbsoluteConstraints(1191, 30, -1, -1));
 
         jButtonAtacar.setText("Atacar");
         jButtonAtacar.addActionListener(new java.awt.event.ActionListener() {
@@ -138,159 +150,50 @@ public class TelaBatalha extends javax.swing.JFrame {
                 jButtonAtacarActionPerformed(evt);
             }
         });
+        getContentPane().add(jButtonAtacar, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 80, -1, -1));
 
         jLabelTipoPersonagemLocal.setText("jLabel1");
+        getContentPane().add(jLabelTipoPersonagemLocal, new org.netbeans.lib.awtextra.AbsoluteConstraints(301, 50, -1, -1));
 
         jLabelMostraMinhaVida.setText("jLabel2");
+        getContentPane().add(jLabelMostraMinhaVida, new org.netbeans.lib.awtextra.AbsoluteConstraints(285, 75, -1, -1));
 
         jLabelTipoPersonagemOponente.setText("jLabel3");
+        getContentPane().add(jLabelTipoPersonagemOponente, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 40, -1, -1));
 
         jLabelMostraVidaOponente.setText("jLabel4");
+        getContentPane().add(jLabelMostraVidaOponente, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 60, -1, -1));
+        getContentPane().add(jLabelImagem, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 9, -1, -1));
 
         jLabelMostrarMeuAtaque.setText("jLabel1");
+        getContentPane().add(jLabelMostrarMeuAtaque, new org.netbeans.lib.awtextra.AbsoluteConstraints(285, 100, -1, -1));
 
         jLabel2.setText("Ataque:");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(228, 100, -1, -1));
 
         jLabel3.setText("Defesa:");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(228, 125, -1, -1));
 
         jLabelMostrarMinhaDefesa.setText("jLabel4");
+        getContentPane().add(jLabelMostrarMinhaDefesa, new org.netbeans.lib.awtextra.AbsoluteConstraints(285, 125, -1, -1));
 
         jButtonAtacarArriscado.setText("Atacar Arriscado");
+        jButtonAtacarArriscado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAtacarArriscadoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButtonAtacarArriscado, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 140, -1, -1));
 
         jLabelExplicaAtaqueArriscado1.setText("No ataque arriscado você poderá causar um maior dano,");
+        getContentPane().add(jLabelExplicaAtaqueArriscado1, new org.netbeans.lib.awtextra.AbsoluteConstraints(387, 172, -1, -1));
 
         jLabelExplicaAtaqueArriscado2.setText("mas as chances de um dano mais alto são um pouco menores.");
+        getContentPane().add(jLabelExplicaAtaqueArriscado2, new org.netbeans.lib.awtextra.AbsoluteConstraints(387, 192, -1, -1));
+        getContentPane().add(jLabelImagemAtualOponente, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 40, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabelImagem)
-                            .addComponent(jLabelImagemMeuPersonagem)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(264, 264, 264)
-                        .addComponent(jButtonUsarItem)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(228, 228, 228)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 2, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabelEuSouUm)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(jLabelTipoPersonagemLocal))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabelMochila)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabelMinhaVida)
-                                            .addComponent(jLabel2))
-                                        .addGap(18, 18, 18)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(jLabelMostrarMeuAtaque)
-                                            .addComponent(jLabelMostraMinhaVida)
-                                            .addComponent(jLabelMostrarMinhaDefesa)))))
-                            .addComponent(jLabel3)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(237, 237, 237)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(45, 45, 45)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButtonAtacar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 526, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabelVidaOponente)
-                                    .addComponent(jLabelMeuOponenteEhUm))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabelMostraVidaOponente)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabelTipoPersonagemOponente)
-                                        .addGap(35, 35, 35)
-                                        .addComponent(jLabelImagemOponente)))
-                                .addGap(45, 45, 45))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButtonAtacarArriscado)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelExplicaAtaqueArriscado2)
-                            .addComponent(jLabelExplicaAtaqueArriscado1))
-                        .addGap(0, 0, Short.MAX_VALUE))))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(9, 9, 9)
-                        .addComponent(jLabelImagem)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabelImagemMeuPersonagem))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(30, 30, 30)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabelImagemOponente)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                            .addComponent(jLabelMeuOponenteEhUm)
-                                            .addComponent(jLabelTipoPersonagemOponente))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(jLabelEuSouUm, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(jLabelTipoPersonagemLocal))
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                    .addComponent(jLabelMinhaVida)
-                                                    .addComponent(jLabelMostraMinhaVida))
-                                                .addGap(11, 11, 11)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(jLabel2)
-                                                    .addComponent(jLabelMostrarMeuAtaque)))
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                .addComponent(jLabelVidaOponente)
-                                                .addComponent(jLabelMostraVidaOponente))))))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(80, 80, 80)
-                                .addComponent(jButtonAtacar)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(11, 11, 11)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabelMostrarMinhaDefesa))
-                                .addGap(13, 13, 13)
-                                .addComponent(jLabelMochila))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButtonAtacarArriscado)))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabelExplicaAtaqueArriscado1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabelExplicaAtaqueArriscado2)))
-                .addGap(27, 27, 27)
-                .addComponent(jButtonUsarItem)
-                .addContainerGap(290, Short.MAX_VALUE))
-        );
+        jLabel1.setText("Este é um ataque com dano mais consistente.");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 110, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -298,30 +201,89 @@ public class TelaBatalha extends javax.swing.JFrame {
     private void jButtonUsarItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUsarItemActionPerformed
         // TODO add your handling code here:
         String item = jListItens.getSelectedValue();
-        if(item.equals("poção de vida")){
-            int vida = Integer.parseInt(jLabelMostraMinhaVida.getText()) + 10;
+        if (item.equals("poção de vida")) {
+            int vida = this.atorJogador.getJogador().getPersonagem().getVida() + 10;
             jLabelMostraMinhaVida.setText(Integer.toString(vida));
             this.atorJogador.getJogador().getPersonagem().setVida(vida);
-        }
-        else if(item.equals("poção de ataque")){
-            int ataque = Integer.parseInt(jLabelMostrarMeuAtaque.getText()) + 10;
+        } else if (item.equals("poção de ataque")) {
+            int ataque = this.atorJogador.getJogador().getPersonagem().getAtaque() + 10;
             jLabelMostrarMeuAtaque.setText(Integer.toString(ataque));
             this.atorJogador.getJogador().getPersonagem().setAtaque(ataque);
-        }
-        else if(item.equals("poção de defesa")){
-            int defesa = Integer.parseInt(jLabelMostrarMinhaDefesa.getText()) + 10;
+        } else if (item.equals("poção de defesa")) {
+            int defesa = this.atorJogador.getJogador().getPersonagem().getDefesa() + 10;
             jLabelMostrarMinhaDefesa.setText(Integer.toString(defesa));
             this.atorJogador.getJogador().getPersonagem().setDefesa(defesa);
-        }
-        else
+        } else {
             JOptionPane.showMessageDialog(null, "Nome do item não corresponde.");
+        }
         model.remove(jListItens.getSelectedIndex());
         jButtonUsarItem.setEnabled(false);
     }//GEN-LAST:event_jButtonUsarItemActionPerformed
 
     private void jButtonAtacarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAtacarActionPerformed
         // TODO add your handling code here:
+        if (this.jButtonUsarItem.isEnabled() && numeroDeItens() != 0) {
+            JOptionPane.showMessageDialog(null, "É extremamente recomendado usar um item antes de fazer um ataque.");
+        } else {
+            Random r = new Random();
+            int maximo = 12;
+            int minimo = 1;
+            int modificadorAtaque = r.nextInt(maximo - minimo) + minimo;
+            if (modificadorAtaque == 12) {
+                modificadorAtaque += 10;
+                JOptionPane.showMessageDialog(null, "Dano Crítico!");
+            }
+            int dano = this.atorJogador.calculaAtaque(modificadorAtaque);
+            int vidaOponente = Integer.parseInt(jLabelMostraVidaOponente.getText());
+            this.jLabelMostraVidaOponente.setText(Integer.toString(vidaOponente - dano));
+            if (Integer.parseInt(jLabelMostraVidaOponente.getText()) <= 0) {
+                this.jLabelMostraVidaOponente.setText(Integer.toString(0));
+                this.desabilitarBotoes();
+                JOptionPane.showMessageDialog(null, "Parabéns, você ganhou a batalha!");
+                this.atorJogador.setVencedor();
+                this.atorJogador.enviarEstado();
+                this.dispose();
+            } else {
+                this.jLabelMostraVidaOponente.setText(Integer.toString(vidaOponente - dano));
+                this.desabilitarBotoes();
+                JOptionPane.showMessageDialog(null, "Você causou " + dano + " de dano no seu oponente. Agora aguarde sua jogada.");
+                this.atorJogador.enviarEstado();
+            }
+        }
     }//GEN-LAST:event_jButtonAtacarActionPerformed
+
+    private void jButtonAtacarArriscadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAtacarArriscadoActionPerformed
+        // TODO add your handling code here:
+        if (this.jButtonUsarItem.isEnabled() && numeroDeItens() != 0) {
+            JOptionPane.showMessageDialog(null, "É extremamente recomendado usar um item antes de fazer um ataque.");
+        } else {
+            Random r = new Random();
+            int maximo = 30;
+            int minimo = 1;
+            int modificadorAtaque = r.nextInt(maximo - minimo) + minimo;
+            if (modificadorAtaque == 29 || modificadorAtaque == 30) {
+                modificadorAtaque += 12;
+                JOptionPane.showMessageDialog(null, "Dano Crítico!");
+            }
+            int dano = this.atorJogador.calculaAtaqueArriscado(modificadorAtaque);
+            int vidaOponente = Integer.parseInt(jLabelMostraVidaOponente.getText());
+            this.jLabelMostraVidaOponente.setText(Integer.toString(vidaOponente - dano));
+            if (Integer.parseInt(jLabelMostraVidaOponente.getText()) <= 0) {
+                this.jLabelMostraVidaOponente.setText(Integer.toString(0));
+                this.desabilitarBotoes();
+                JOptionPane.showMessageDialog(null, "Você causou " + dano + " de dano no seu oponente.");
+                JOptionPane.showMessageDialog(null, "Parabéns, você ganhou a batalha!");
+                this.atorJogador.setVencedor();
+                this.atorJogador.enviarEstado();
+                this.dispose();
+            } else {
+                this.jLabelMostraVidaOponente.setText(Integer.toString(vidaOponente - dano));
+                this.desabilitarBotoes();
+                JOptionPane.showMessageDialog(null, "Você causou " + dano + " de dano no seu oponente. Agora aguarde sua jogada.");
+                this.atorJogador.enviarEstado();
+            }
+        }
+    }//GEN-LAST:event_jButtonAtacarArriscadoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -331,12 +293,14 @@ public class TelaBatalha extends javax.swing.JFrame {
     private javax.swing.JButton jButtonAtacar;
     private javax.swing.JButton jButtonAtacarArriscado;
     private javax.swing.JButton jButtonUsarItem;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabelEuSouUm;
     private javax.swing.JLabel jLabelExplicaAtaqueArriscado1;
     private javax.swing.JLabel jLabelExplicaAtaqueArriscado2;
     private javax.swing.JLabel jLabelImagem;
+    private javax.swing.JLabel jLabelImagemAtualOponente;
     private javax.swing.JLabel jLabelImagemMeuPersonagem;
     private javax.swing.JLabel jLabelImagemOponente;
     private javax.swing.JLabel jLabelMeuOponenteEhUm;
@@ -353,13 +317,23 @@ public class TelaBatalha extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 
-    private void desabilitaBotoes() {
-        jButtonAtacar.setEnabled(false);
-        jButtonUsarItem.setEnabled(false);
-    }
-    
-    public void atualizarInterface(EstadoDoJogo estado) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void atualizaVidaLabel(int vida) {
+        this.jLabelMostraMinhaVida.setText(Integer.toString(vida));
     }
 
+    public void desabilitarBotoes() {
+        this.jButtonAtacar.setEnabled(false);
+        this.jButtonAtacarArriscado.setEnabled(false);
+        this.jButtonUsarItem.setEnabled(false);
+    }
+
+    public void habilitarBotoes() {
+        this.jButtonAtacar.setEnabled(true);
+        this.jButtonAtacarArriscado.setEnabled(true);
+        this.jButtonUsarItem.setEnabled(true);
+    }
+
+    public void atualizaVidaLabelOponente(int vida) {
+        this.jLabelMostraVidaOponente.setText(Integer.toString(vida));
+    }
 }

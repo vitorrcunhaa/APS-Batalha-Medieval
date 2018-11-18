@@ -21,7 +21,7 @@ public class AtorJogador {
     protected TelaEscolhaPersonagem telaEscolhaPersonagem;
     protected TelaJornada telaJornada;
     protected TelaBatalha telaBatalha;
-
+    protected int defesaAtualOponente;
 
     public AtorJogador() {
         this.telaPrincipal = new TelaPrincipal(this);
@@ -120,6 +120,10 @@ public class AtorJogador {
             this.telaPrincipal.showDialog("Não é a sua vez.");
         }
     }
+    
+    public void setVencedor() {
+        this.controlador.getEstado().setVencedor(true);
+    }
 
     public void conectar() {
         nome = this.showNameQuestion();
@@ -128,29 +132,7 @@ public class AtorJogador {
         this.controlador.criarJogador(this.nome, atorNetGames.minhaVez);
     }
 
-    public void informarPerdedor() {
-        //criar botao desistir
-        // this.telaJornada.desabilitarBotaoDesistir
-        // this.telaBatalha.desabilitarBotaoDesistir
-        this.telaPrincipal.showDialog("Você foi derrotado! O jogo acabou.");
-    }
-
-    public void informarVencedor() {
-        //criar botao desistir
-        // this.telaJornada.desabilitarBotaoDesistir
-        // this.telaBatalha.desabilitarBotaoDesistir
-        this.telaPrincipal.showDialog("Você aniquilou o oponente e venceu a batalha! O jogo acabou.");
-    }
-
-    public void informarDesistencia() {
-        //criar botao desistir
-        // this.telaJornada.desabilitarBotaoDesistir
-        // this.telaBatalha.desabilitarBotaoDesistir
-        this.telaPrincipal.showDialog("O outro jogador desistiu. Parabéns, você é o vencedor! O jogo acabou.");
-    }
-
     public void enviarEstado() {
-        //desabilitar botoes
         atorNetGames.enviarEstado(controlador.getEstado());
     }
     
@@ -161,51 +143,77 @@ public class AtorJogador {
     }
 
     public void receberEstado(EstadoDoJogo estado) {
-        if(estado.getEstadoDoJogo().isPrimeiraJogada()) {
-//           esta É a primeira vez que este metodo é chamado
-//           neste momento apenas uma tela de batalha consegue as informacoes do adversario
-//           por isso uma variavel auxiliar(preparadoParaJogar) é setada como true
-//           para devolver a jogada para o jogador que tinha a vez, e que ele tambem
-//           receba as informacoes do oponente
+        this.defesaAtualOponente = estado.getJogador().getPersonagem().getDefesa();
+        if(estado.isVencedor()) {
+            JOptionPane.showMessageDialog(null, "Você recebeu um dano de: "+estado.getDano()+".");
+            JOptionPane.showMessageDialog(null, "Meus pêsames. Você perdeu a batalha.");
+            this.telaBatalha.dispose();
+        }
+        
+        else if(estado.isPrimeiraJogada()) {
+            this.controlador.setEstado(estado);
+            this.controlador.getEstado().setPrimeiraJogada(false);
+            this.controlador.getEstado().setPreparadoPraJogar(true);
+            this.telaBatalha.preencheInformacoesOponente(estado.getJogador());
+            this.telaBatalha.desabilitarBotoes();
+            this.controlador.getEstado().setJogador(this.getJogador());
+            this.controlador.setEstado(this.controlador.getEstado());
             this.telaJornada.fechaTela();
             this.telaBatalha.exibeTela();
-            this.telaBatalha.preencheInformacoesOponente(estado.getJogador());
-            estado.getEstadoDoJogo().setPrimeiraJogada(false);
-            estado.getEstadoDoJogo().setPreparadoPraJogar(true);
-            //desabilita meus botoes
-            estado.setJogador(this.controlador.getJogador2()); //verificar se é jogador 2 ou se pode ser jogador 1 também
-            this.controlador.setEstado(estado);
             this.enviarEstado();
         }
-        if(estado.getEstadoDoJogo().isPreparadoPraJogar()) {
-            //aqui começará de fato a primeira 
+        else if(estado.isPreparadoPraJogar()) {
+            this.controlador.getEstado().setPreparadoPraJogar(false);
+            this.controlador.getEstado().setPrimeiraJogada(false);
             this.telaBatalha.preencheInformacoesOponente(estado.getJogador());
         }
-        //habilitar botoes
-        // criar variavel de auxilio boolean ehAtaque
+        else if(estado.getDano() > 0) {
+            this.controlador.getEstado().setPreparadoPraJogar(false);
+            this.telaBatalha.atualizaVidaLabelOponente(estado.getJogador().getPersonagem().getVida());
+            estado.getJogador().getPersonagem().getVida();
+            int dano = estado.getDano();
+            int vidaAtual = this.getJogador().getPersonagem().getVida();
+            this.getJogador().getPersonagem().setVida(vidaAtual - dano);
+            JOptionPane.showMessageDialog(null, "Você recebeu um dano de: "+dano+". Vida atual: "+this.getJogador().getPersonagem().getVida());
+            this.telaBatalha.atualizaVidaLabel(this.getJogador().getPersonagem().getVida());
+            this.telaBatalha.habilitarBotoes();
+        }
     }
     
     public void receberPosicao(EstadoMapa estadoMapa) {
         JOptionPane.showMessageDialog(null, "Sua vez!");
-        if(this.controlador.getJogador1() != null){
-            if(estadoMapa.getMinhaPosicao() == this.controlador.getJogador1().getPosicaoAtual()) {
+        if(estadoMapa.getMinhaPosicao() == this.getJogador().getPosicaoAtual()) {
             JOptionPane.showMessageDialog(null, "Você encontrou um oponente. Hora da batalha!");
-            this.controlador.setEstado(new EstadoDoJogo(this.controlador.getJogador1(), false, false, true, false));
-            this.enviarEstado();
+            this.controlador.setEstado(new EstadoDoJogo(this.getJogador(), false, false, true, false, 0));
             this.telaJornada.fechaTela();
             this.telaBatalha.exibeTela();
-            }
-        }
-        else {
-            if(estadoMapa.getMinhaPosicao() == this.controlador.getJogador2().getPosicaoAtual()) {
-            JOptionPane.showMessageDialog(null, "Você encontrou um oponente. Hora da batalha!");
-            this.controlador.setEstado(new EstadoDoJogo(this.controlador.getJogador2(), false, false, true, false));
             this.enviarEstado();
-            this.telaJornada.fechaTela();
-            this.telaBatalha.exibeTela();
-            }
         }
         this.controlador.setEstadoMapa(estadoMapa.isMinhaVez(), estadoMapa.getMinhaPosicao());
         this.telaJornada.habilitarBotoes();
+    }
+
+    public int getDefesaOponente(){
+        return this.defesaAtualOponente;
+    }
+    
+    public int calculaAtaque(int modificadorAtaque) {   
+        int dano = (int) ((this.getJogador().getPersonagem().getAtaque()*0.6) + (modificadorAtaque*0.7) - (getDefesaOponente()*0.55));
+        if (dano <= 0) { 
+            dano = 1;
+        }
+        this.controlador.getEstado().setDano(dano);
+        this.controlador.getEstado().setJogador(this.getJogador());
+        return dano;
+    }
+
+    public int calculaAtaqueArriscado(int modificadorAtaque) {
+       int dano = (int) ((this.getJogador().getPersonagem().getAtaque()*0.55) + (modificadorAtaque*1.2) - (getDefesaOponente()*0.6));
+       if (dano <= 0) { 
+            dano = 1;
+        }
+       this.controlador.getEstado().setDano(dano);
+       this.controlador.getEstado().setJogador(this.getJogador());
+       return dano;
     }
 }

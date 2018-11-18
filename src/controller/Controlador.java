@@ -95,18 +95,7 @@ public class Controlador {
         this.estadoMapa = new EstadoMapa(minhaVez, posicao);
     }
     
-    public boolean setEstado(EstadoDoJogo estado){
+    public void setEstado(EstadoDoJogo estado){
     	this.estadoJogo = estado;
-    	if(estado.isVencedor()){
-    		atorJogador.informarPerdedor();
-    		return false;
-    	}
-    	
-    	if(estado.isDesistir()){
-    		atorJogador.informarDesistencia();
-    		return false;
-    	}
-    	
-    	return true;
     }    
 }
