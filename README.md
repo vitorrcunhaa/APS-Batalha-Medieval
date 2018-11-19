@@ -1,11 +1,14 @@
 # APS-Batalha-Medieval
 Trabalho da disciplina INE-5608.
 
+Jogo no estilo medieval multiplayer(máximo 2 jogadores) utilizando framework NetGames.
+Aplicação não é em tempo real. Um jogador deve sempre esperar o outro concluir a jogada.
+
 Especificação de requisitos:
 https://docs.google.com/document/d/13UErIq2efjGh5PZBNc3wfHpVo71INIrQgHMNtF7ZszU/edit
 
-Vídeos de demonstração do jogo até o momento:
-https://youtu.be/AWL-3ay7Oc8
+Vídeos de demonstração do jogo até o momento: <br/>
+https://youtu.be/AWL-3ay7Oc8 <br/>
 https://youtu.be/L0ebQqbEfmE
 
 Todo List:
