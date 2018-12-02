@@ -24,15 +24,7 @@ public class Controlador {
     public Controlador(AtorJogador atorJogador) {
         this.atorJogador = atorJogador;
     }
-
-    public void desistir(){
-        this.jogadorDaVezDesistiu = true;
-    }
-    
-    public boolean verificarVencedor(){
-    	//implementar vencedor
-        return false;
-    }		
+    	
     public boolean verificaJogador1(Jogador jogador)
     {
         if(jogador1 != null)

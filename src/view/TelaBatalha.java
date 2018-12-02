@@ -109,6 +109,7 @@ public class TelaBatalha extends javax.swing.JFrame {
         jLabelExplicaAtaqueArriscado2 = new javax.swing.JLabel();
         jLabelImagemAtualOponente = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        jButtonDesistir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAutoRequestFocus(false);
@@ -194,6 +195,14 @@ public class TelaBatalha extends javax.swing.JFrame {
 
         jLabel1.setText("Este é um ataque com dano mais consistente.");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 110, -1, -1));
+
+        jButtonDesistir.setText("Desistir");
+        jButtonDesistir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonDesistirActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButtonDesistir, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 240, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -285,6 +294,17 @@ public class TelaBatalha extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButtonAtacarArriscadoActionPerformed
 
+    private void jButtonDesistirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDesistirActionPerformed
+        // TODO add your handling code here:
+        int result = JOptionPane.showConfirmDialog(this, "Tem certeza de que deseja desistir?", "Fechar jogo", JOptionPane.YES_NO_OPTION);
+        if (result == JOptionPane.YES_OPTION) {
+            this.desabilitarBotoes();
+        this.atorJogador.desistir();
+        JOptionPane.showMessageDialog(null, "É uma pena, você desistiu. Sendo assim, você perdeu a batalha!");
+        this.dispose();
+        }
+    }//GEN-LAST:event_jButtonDesistirActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -292,6 +312,7 @@ public class TelaBatalha extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAtacar;
     private javax.swing.JButton jButtonAtacarArriscado;
+    private javax.swing.JButton jButtonDesistir;
     private javax.swing.JButton jButtonUsarItem;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -325,12 +346,14 @@ public class TelaBatalha extends javax.swing.JFrame {
         this.jButtonAtacar.setEnabled(false);
         this.jButtonAtacarArriscado.setEnabled(false);
         this.jButtonUsarItem.setEnabled(false);
+        this.jButtonDesistir.setEnabled(false);
     }
 
     public void habilitarBotoes() {
         this.jButtonAtacar.setEnabled(true);
         this.jButtonAtacarArriscado.setEnabled(true);
         this.jButtonUsarItem.setEnabled(true);
+        this.jButtonDesistir.setEnabled(true);
     }
 
     public void atualizaVidaLabelOponente(int vida) {

@@ -112,13 +112,8 @@ public class AtorJogador {
     }
 
     public void desistir() {
-        if (atorNetGames.ehMinhaVez()) {
-            controlador.desistir();
-            this.enviarEstado();
-            this.telaPrincipal.showDialog("Você se rendeu. O jogo acabou.");
-        } else {
-            this.telaPrincipal.showDialog("Não é a sua vez.");
-        }
+        this.controlador.getEstado().setDesistiu(true);
+        this.enviarEstado();
     }
     
     public void setVencedor() {
@@ -144,7 +139,11 @@ public class AtorJogador {
 
     public void receberEstado(EstadoDoJogo estado) {
         this.defesaAtualOponente = estado.getJogador().getPersonagem().getDefesa();
-        if(estado.isVencedor()) {
+        if (estado.isDesistir()) {
+            JOptionPane.showMessageDialog(null, "Seu oponente desistiu. Sendo assim, você venceu a batalha, parabéns!");
+            this.telaBatalha.dispose();
+        }
+        else if(estado.isVencedor()) {
             JOptionPane.showMessageDialog(null, "Você recebeu um dano de: "+estado.getDano()+".");
             JOptionPane.showMessageDialog(null, "Meus pêsames. Você perdeu a batalha.");
             this.telaBatalha.dispose();
