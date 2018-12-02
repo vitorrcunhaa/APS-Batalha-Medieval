@@ -38,7 +38,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }
 
     public boolean setEstaConectado(boolean conectou){
-        return estaConectado = true;
+        return estaConectado = conectou;
     }
   
     public boolean estaConectado()
@@ -58,6 +58,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -66,37 +67,29 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabelBatalhaMedieval = new javax.swing.JLabel();
-        jButtonDesistir = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenuConectar = new javax.swing.JMenu();
         jMenuEscolherPersonagem = new javax.swing.JMenu();
         jMenuIniciarJornada = new javax.swing.JMenu();
+        jMenuDesconectar = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setMaximumSize(getPreferredSize());
         jPanel1.setMinimumSize(getPreferredSize());
 
-        jLabel1.setText("1º: Conectar");
+        jLabel1.setText("1º: Conectar.");
 
-        jLabel2.setText("2º: Escolher personagem");
+        jLabel2.setText("2º: Escolher personagem.");
 
-        jLabel3.setText("3º: Esperar adversário conectar");
+        jLabel3.setText("3º: Esperar adversário iniciar jornada, ou inicie você mesmo.");
 
-        jLabel4.setText("4º: Iniciar Jornada");
+        jLabel4.setText("4º: Jornada Iniciada, boa sorte na batalha!");
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jLabel5.setText("Bem-vindo ao Batalha Medieval");
 
         jLabelBatalhaMedieval.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/batalha_medieval.jpg"))); // NOI18N
-
-        jButtonDesistir.setText("Desistir");
-        jButtonDesistir.setEnabled(false);
-        jButtonDesistir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonDesistirActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -106,15 +99,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addGap(91, 91, 91)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 388, Short.MAX_VALUE)
-                        .addComponent(jButtonDesistir)))
-                .addGap(54, 54, 54))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jLabel3)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING)))
+                .addContainerGap(88, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(175, 175, 175)
                 .addComponent(jLabelBatalhaMedieval)
@@ -127,17 +117,15 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addComponent(jLabel5)
                 .addGap(29, 29, 29)
                 .addComponent(jLabelBatalhaMedieval)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jButtonDesistir))
-                .addGap(26, 26, 26))
+                .addComponent(jLabel4)
+                .addGap(31, 31, 31))
         );
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
@@ -190,7 +178,31 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
         jMenuBar1.add(jMenuIniciarJornada);
 
+        jMenuDesconectar.setText("Desconectar");
+        jMenuDesconectar.setEnabled(false);
+
+        org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, jMenuDesconectar, org.jdesktop.beansbinding.ELProperty.create("${selected}"), jMenuDesconectar, org.jdesktop.beansbinding.BeanProperty.create("selected"));
+        bindingGroup.addBinding(binding);
+
+        jMenuDesconectar.addMenuListener(new javax.swing.event.MenuListener() {
+            public void menuCanceled(javax.swing.event.MenuEvent evt) {
+            }
+            public void menuDeselected(javax.swing.event.MenuEvent evt) {
+            }
+            public void menuSelected(javax.swing.event.MenuEvent evt) {
+                jMenuDesconectarMenuSelected(evt);
+            }
+        });
+        jMenuDesconectar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuDesconectarActionPerformed(evt);
+            }
+        });
+        jMenuBar1.add(jMenuDesconectar);
+
         setJMenuBar(jMenuBar1);
+
+        bindingGroup.bind();
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -219,14 +231,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
         if(this.estaConectado()==false)
             this.atorJogador.conectar();
-        if(this.estaConectado())
+        if(this.estaConectado()) {
             jMenuEscolherPersonagem.setEnabled(true);
+            jMenuDesconectar.setEnabled(true);
+            jMenuConectar.setEnabled(false);
+        }
         else
             jMenuEscolherPersonagem.setEnabled(false);
-        if(this.estaConectado())
-            jMenuConectar.setEnabled(false);
-        else
-            jMenuConectar.setEnabled(true);
     }//GEN-LAST:event_jMenuConectarMenuSelected
 
     private void jMenuIniciarJornadaMenuSelected(javax.swing.event.MenuEvent evt) {//GEN-FIRST:event_jMenuIniciarJornadaMenuSelected
@@ -234,17 +245,23 @@ public class TelaPrincipal extends javax.swing.JFrame {
         this.atorJogador.iniciarPartidaPedido();
     }//GEN-LAST:event_jMenuIniciarJornadaMenuSelected
 
-    private void jButtonDesistirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDesistirActionPerformed
+    private void jMenuDesconectarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuDesconectarActionPerformed
         // TODO add your handling code here:
-        int result = JOptionPane.showConfirmDialog(this, "Tem certeza de que deseja se render?", "Fechar jogo", JOptionPane.YES_NO_OPTION);
-        if (result == JOptionPane.YES_OPTION) {
-                atorJogador.desistir();
+    }//GEN-LAST:event_jMenuDesconectarActionPerformed
+
+    private void jMenuDesconectarMenuSelected(javax.swing.event.MenuEvent evt) {//GEN-FIRST:event_jMenuDesconectarMenuSelected
+        // TODO add your handling code here:
+        if(this.estaConectado())
+        {
+            this.atorJogador.desconectar();
+            jMenuEscolherPersonagem.setEnabled(false);
+            this.jMenuDesconectar.setEnabled(false);
+            this.jMenuConectar.setEnabled(true);
         }
-    }//GEN-LAST:event_jButtonDesistirActionPerformed
+    }//GEN-LAST:event_jMenuDesconectarMenuSelected
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonDesistir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -253,9 +270,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelBatalhaMedieval;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenu jMenuConectar;
+    private javax.swing.JMenu jMenuDesconectar;
     private javax.swing.JMenu jMenuEscolherPersonagem;
     private javax.swing.JMenu jMenuIniciarJornada;
     private javax.swing.JPanel jPanel1;
+    private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
 
    

@@ -124,7 +124,15 @@ public class AtorJogador {
         nome = this.showNameQuestion();
         atorNetGames.conectar(nome, "localhost");
         controlador = new Controlador(this);
-        this.controlador.criarJogador(this.nome, atorNetGames.minhaVez);
+        if (this.controlador.getEstado() == null) {
+            this.controlador.criarJogador(this.nome, atorNetGames.minhaVez);
+        }
+    }
+    
+    public void desconectar() {
+        atorNetGames.desconectar();
+        this.telaBatalha.dispose();
+        this.telaJornada.dispose();
     }
 
     public void enviarEstado() {

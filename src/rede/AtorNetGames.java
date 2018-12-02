@@ -44,7 +44,9 @@ public class AtorNetGames implements OuvidorProxy {
     public void desconectar() {
         try {
             proxy.desconectar();
+            atorJogador.getTelaPrincipal().setEstaConectado(false);
         } catch (NaoConectadoException e) {
+            atorJogador.getTelaPrincipal().setEstaConectado(true);
             e.printStackTrace();
         }
     }
@@ -73,6 +75,8 @@ public class AtorNetGames implements OuvidorProxy {
     @Override
     public void finalizarPartidaComErro(String message) {
         atorJogador.getTelaPrincipal().showDialog(message);
+        atorJogador.telaBatalha.dispose();
+        atorJogador.telaJornada.dispose();
     }
 
     public String obterNomeAdversario() {
